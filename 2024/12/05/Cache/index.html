@@ -6,17 +6,17 @@
   
   <title>Cache | Ruihan&#39;s Quicknote</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Cache Access  If cache latency is 4 ns and mem latency is 40 ns. The cache miss latency is 44ns. \[ Miss Penalty (MP)&#x3D; T_{request} + T_{access} + T_{return} \]   Metrics \[ Hit Ratio (HR) &#x3D; \frac{hits">
+  <meta name="description" content="Cache Access  If cache latency is 4 ns and mem latency is 40 ns. The cache miss latency is 44ns. \[ Miss Penalty (MP)&#x3D; T_{request} + T_{access} + T_{return} \]   \[ Hit Ratio (HR) &#x3D; \frac{hits}{hits +">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cache">
 <meta property="og:url" content="http://example.com/2024/12/05/Cache/index.html">
 <meta property="og:site_name" content="Ruihan&#39;s Quicknote">
-<meta property="og:description" content="Cache Access  If cache latency is 4 ns and mem latency is 40 ns. The cache miss latency is 44ns. \[ Miss Penalty (MP)&#x3D; T_{request} + T_{access} + T_{return} \]   Metrics \[ Hit Ratio (HR) &#x3D; \frac{hits">
+<meta property="og:description" content="Cache Access  If cache latency is 4 ns and mem latency is 40 ns. The cache miss latency is 44ns. \[ Miss Penalty (MP)&#x3D; T_{request} + T_{access} + T_{return} \]   \[ Hit Ratio (HR) &#x3D; \frac{hits}{hits +">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2024/12/05/Cache/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-05%20115602.png">
 <meta property="og:image" content="http://example.com/2024/12/05/Cache/image.png">
 <meta property="article:published_time" content="2024-12-05T16:36:52.000Z">
-<meta property="article:modified_time" content="2024-12-05T17:24:18.814Z">
+<meta property="article:modified_time" content="2024-12-05T17:33:28.444Z">
 <meta property="article:author" content="Ruihan">
 <meta property="article:tag" content="Computer Architecture">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,9 @@
 
   
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
   <div id="container">
@@ -103,13 +105,12 @@
 Miss Penalty (MP)= T_{request} + T_{access} + T_{return}
 \]</span> <img src="/2024/12/05/Cache/屏幕截图%202024-12-05%20115602.png" alt="alt text" /></li>
 </ul>
-<h3 id="metrics">Metrics</h3>
 <p><span class="math display">\[
-Hit Ratio (HR) = \frac{hits}{hits+misses}  
+Hit Ratio (HR) = \frac{hits}{hits + misses}  
 \]</span> <span class="math display">\[
-Miss Ratio (MR) = \frac{misses}{hits+misses} 
+Miss Ratio (MR) = \frac{misses}{hits + misses} 
 \]</span> <span class="math display">\[
-Average Memory Access Time (AMAT) = T_{hit} + T_{MP} * MR
+Average Memory Access Time (AMAT) = T_{hit} + T_{MP} \times MR
 \]</span></p>
 <h3 id="example">Example</h3>
 <figure>
@@ -119,7 +120,7 @@ Average Memory Access Time (AMAT) = T_{hit} + T_{MP} * MR
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/05/Cache/" data-id="cm4blfjkl0001cvtxfc4scie2" data-title="Cache" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/12/05/Cache/" data-id="cm4blk6260001ektx2qbv9h2p" data-title="Cache" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
