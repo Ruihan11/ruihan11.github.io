@@ -160,6 +160,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/21/C-cheatsheet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/head.jpg">
+      <meta itemprop="name" content="Ruihan">
+      <meta itemprop="description" content="Big concept -> Rephrase -> Find gaps in knowledge -> Fill gaps -> Repeat">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ruihan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/10/21/C-cheatsheet/" class="post-title-link" itemprop="url">C++ Cheat Sheet</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-10-21 11:05:55 / Modified: 11:15:43" itemprop="dateCreated datePublished" datetime="2025-10-21T11:05:55-04:00">2025-10-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>;           <span class="comment">// 整数</span></span><br><span class="line"><span class="type">float</span> b = <span class="number">3.14f</span>;      <span class="comment">// 单精度浮点</span></span><br><span class="line"><span class="type">double</span> c = <span class="number">3.14159</span>;   <span class="comment">// 双精度浮点</span></span><br><span class="line"><span class="type">char</span> d = <span class="string">&#x27;A&#x27;</span>;         <span class="comment">// 字符</span></span><br><span class="line"><span class="type">bool</span> e = <span class="literal">true</span>;        <span class="comment">// 布尔值</span></span><br><span class="line"><span class="keyword">auto</span> f = <span class="number">42</span>;          <span class="comment">// 自动类型推导 (C++11)</span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> x = <span class="number">10</span>;  <span class="comment">// 无符号</span></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> y = <span class="number">1e18</span>;   <span class="comment">// 长整型</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> z = <span class="number">100</span>;    <span class="comment">// 常量</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/10/21/C-cheatsheet/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/15/jp-travel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -174,7 +240,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/10/15/jp-travel/" class="post-title-link" itemprop="url">jp-travel</a>
+            <a href="/2025/10/15/jp-travel/" class="post-title-link" itemprop="url">Trip to Japan</a>
         </h2>
 
         <div class="post-meta">
@@ -191,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-10-17 10:02:25" itemprop="dateModified" datetime="2025-10-17T10:02:25-04:00">2025-10-17</time>
+                <time title="Modified: 2025-10-21 11:05:29" itemprop="dateModified" datetime="2025-10-21T11:05:29-04:00">2025-10-21</time>
               </span>
 
           
@@ -205,15 +271,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>First time to Japan.</p>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+          <h2 id="Japan-map"><a href="#Japan-map" class="headerlink" title="Japan map"></a>Japan map</h2><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <div id="japan-map" style="height: 480px; width: 100%;"></div>
 
 <script>
 // Initialize map centered on Japan
-var map = L.map('japan-map').setView([36.2048, 138.2529], 6);
+var map = L.map('japan-map').setView([38.5, 138.5], 5);
 
 // Add OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -221,7 +286,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
 
-// Tokyo locations
+// Tokyo locations (Red)
 var tokyoIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
@@ -231,16 +296,14 @@ var tokyoIcon = L.icon({
     shadowSize: [41, 41]
 });
 
-L.marker([35.6595, 139.7004], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Shibuya Crossing</b><br>Tokyo');
+L.marker([35.6529, 139.7595], {icon: tokyoIcon}).addTo(map)
+    .bindPopup('<b>Hamamatsucho</b><br>Tokyo (Dec 28-29)');
 L.marker([35.7148, 139.7967], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Senso-ji Temple</b><br>Tokyo');
-L.marker([35.6764, 139.6993], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Meiji Shrine</b><br>Tokyo');
-L.marker([35.6654, 139.7707], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Tsukiji Outer Market</b><br>Tokyo');
+    .bindPopup('<b>Asakusa & Skytree</b><br>Tokyo');
+L.marker([35.7022, 139.7744], {icon: tokyoIcon}).addTo(map)
+    .bindPopup('<b>Akihabara</b><br>Tokyo');
 
-// Kyoto locations
+// Kyoto/Uji locations (Blue)
 var kyotoIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
@@ -251,16 +314,18 @@ var kyotoIcon = L.icon({
 });
 
 L.marker([34.9671, 135.7727], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Fushimi Inari Shrine</b><br>Kyoto');
-L.marker([35.0394, 135.7292], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Kinkaku-ji</b><br>Kyoto');
-L.marker([35.0094, 135.6686], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Arashiyama Bamboo Grove</b><br>Kyoto');
+    .bindPopup('<b>Fushimi Inari Shrine</b><br>Kyoto (Dec 30-Jan 2)');
 L.marker([35.0037, 135.7751], {icon: kyotoIcon}).addTo(map)
     .bindPopup('<b>Gion District</b><br>Kyoto');
+L.marker([35.0116, 135.7681], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Nishiki Market</b><br>Kyoto');
+L.marker([35.0094, 135.6686], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Arashiyama Bamboo Grove</b><br>Kyoto');
+L.marker([34.8893, 135.8076], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Byodo-in Temple</b><br>Uji (Jan 3)');
 
-// Osaka locations
-var osakaIcon = L.icon({
+// Lake Biwa/Otsu locations (Green)
+var otsuIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -269,12 +334,27 @@ var osakaIcon = L.icon({
     shadowSize: [41, 41]
 });
 
-L.marker([34.6686, 135.5005], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Dotonbori</b><br>Osaka');
-L.marker([34.6873, 135.5262], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Osaka Castle</b><br>Osaka');
-L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Kuromon Market</b><br>Osaka');
+L.marker([35.0047, 135.8683], {icon: otsuIcon}).addTo(map)
+    .bindPopup('<b>Lake Biwa & Otsu</b><br>Biwako Prince Hotel (Jan 3-4)');
+L.marker([35.2745, 136.2593], {icon: otsuIcon}).addTo(map)
+    .bindPopup('<b>Hikone Castle</b><br>Lake Biwa');
+
+// Hokkaido locations (Yellow/Orange)
+var hokkaidoIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+L.marker([42.8048, 140.6874], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Niseko Ski Resort</b><br>Niseko (Jan 5-6)');
+L.marker([43.1907, 140.9947], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Otaru Canal</b><br>Otaru (Jan 7-10)');
+L.marker([43.0642, 141.3469], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Sapporo</b><br>Sapporo (Jan 9 & Jan 11-14)');
 </script>
           <!--noindex-->
             <div class="post-button">
@@ -316,7 +396,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/10/14/books-10-25/" class="post-title-link" itemprop="url">Books 10/25</a>
+            <a href="/2025/10/14/books-10-25/" class="post-title-link" itemprop="url">Books Oct-2025</a>
         </h2>
 
         <div class="post-meta">
@@ -333,7 +413,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-10-17 10:01:18" itemprop="dateModified" datetime="2025-10-17T10:01:18-04:00">2025-10-17</time>
+                <time title="Modified: 2025-10-21 11:18:43" itemprop="dateModified" datetime="2025-10-21T11:18:43-04:00">2025-10-21</time>
               </span>
 
           
@@ -388,7 +468,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/10/14/books-09-25/" class="post-title-link" itemprop="url">Books 09/25</a>
+            <a href="/2025/10/14/books-09-25/" class="post-title-link" itemprop="url">Books Sep-2025</a>
         </h2>
 
         <div class="post-meta">
@@ -405,7 +485,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-10-17 09:11:57" itemprop="dateModified" datetime="2025-10-17T09:11:57-04:00">2025-10-17</time>
+                <time title="Modified: 2025-10-21 11:18:45" itemprop="dateModified" datetime="2025-10-21T11:18:45-04:00">2025-10-21</time>
               </span>
 
           
@@ -516,7 +596,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="First time to Japan. Map      &#x2F;&#x2F; Initialize map centered on Japan var map &#x3D; L.map(&#39;japan-map&#39;).setView([36.2048, 138.2529], 6);  &#x2F;&#x2F; Add OpenStreetMap tiles L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.">
+  <meta name="description" content="Japan map      &#x2F;&#x2F; Initialize map centered on Japan var map &#x3D; L.map(&#39;japan-map&#39;).setView([38.5, 138.5], 5);  &#x2F;&#x2F; Add OpenStreetMap tiles L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.org&#x2F;{z}&#x2F;{x}&#x2F;{y}.png&#39;,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jp-travel">
+<meta property="og:title" content="Trip to Japan">
 <meta property="og:url" content="http://example.com/2025/10/15/jp-travel/index.html">
 <meta property="og:site_name" content="Ruihan&#39;s Blog">
-<meta property="og:description" content="First time to Japan. Map      &#x2F;&#x2F; Initialize map centered on Japan var map &#x3D; L.map(&#39;japan-map&#39;).setView([36.2048, 138.2529], 6);  &#x2F;&#x2F; Add OpenStreetMap tiles L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.">
+<meta property="og:description" content="Japan map      &#x2F;&#x2F; Initialize map centered on Japan var map &#x3D; L.map(&#39;japan-map&#39;).setView([38.5, 138.5], 5);  &#x2F;&#x2F; Add OpenStreetMap tiles L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.org&#x2F;{z}&#x2F;{x}&#x2F;{y}.png&#39;,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-15T15:45:31.000Z">
-<meta property="article:modified_time" content="2025-10-17T14:02:25.790Z">
+<meta property="article:modified_time" content="2025-10-21T15:05:29.205Z">
 <meta property="article:author" content="Ruihan">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>jp-travel | Ruihan's Blog</title>
+  <title>Trip to Japan | Ruihan's Blog</title>
   
 
 
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          jp-travel
+          Trip to Japan
         </h1>
 
         <div class="post-meta">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-10-17 10:02:25" itemprop="dateModified" datetime="2025-10-17T10:02:25-04:00">2025-10-17</time>
+                <time title="Modified: 2025-10-21 11:05:29" itemprop="dateModified" datetime="2025-10-21T11:05:29-04:00">2025-10-21</time>
               </span>
 
           
@@ -207,15 +207,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>First time to Japan.</p>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <h2 id="Japan-map"><a href="#Japan-map" class="headerlink" title="Japan map"></a>Japan map</h2><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <div id="japan-map" style="height: 480px; width: 100%;"></div>
 
 <script>
 // Initialize map centered on Japan
-var map = L.map('japan-map').setView([36.2048, 138.2529], 6);
+var map = L.map('japan-map').setView([38.5, 138.5], 5);
 
 // Add OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -223,7 +222,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
 
-// Tokyo locations
+// Tokyo locations (Red)
 var tokyoIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
@@ -233,16 +232,14 @@ var tokyoIcon = L.icon({
     shadowSize: [41, 41]
 });
 
-L.marker([35.6595, 139.7004], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Shibuya Crossing</b><br>Tokyo');
+L.marker([35.6529, 139.7595], {icon: tokyoIcon}).addTo(map)
+    .bindPopup('<b>Hamamatsucho</b><br>Tokyo (Dec 28-29)');
 L.marker([35.7148, 139.7967], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Senso-ji Temple</b><br>Tokyo');
-L.marker([35.6764, 139.6993], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Meiji Shrine</b><br>Tokyo');
-L.marker([35.6654, 139.7707], {icon: tokyoIcon}).addTo(map)
-    .bindPopup('<b>Tsukiji Outer Market</b><br>Tokyo');
+    .bindPopup('<b>Asakusa & Skytree</b><br>Tokyo');
+L.marker([35.7022, 139.7744], {icon: tokyoIcon}).addTo(map)
+    .bindPopup('<b>Akihabara</b><br>Tokyo');
 
-// Kyoto locations
+// Kyoto/Uji locations (Blue)
 var kyotoIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
@@ -253,16 +250,18 @@ var kyotoIcon = L.icon({
 });
 
 L.marker([34.9671, 135.7727], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Fushimi Inari Shrine</b><br>Kyoto');
-L.marker([35.0394, 135.7292], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Kinkaku-ji</b><br>Kyoto');
-L.marker([35.0094, 135.6686], {icon: kyotoIcon}).addTo(map)
-    .bindPopup('<b>Arashiyama Bamboo Grove</b><br>Kyoto');
+    .bindPopup('<b>Fushimi Inari Shrine</b><br>Kyoto (Dec 30-Jan 2)');
 L.marker([35.0037, 135.7751], {icon: kyotoIcon}).addTo(map)
     .bindPopup('<b>Gion District</b><br>Kyoto');
+L.marker([35.0116, 135.7681], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Nishiki Market</b><br>Kyoto');
+L.marker([35.0094, 135.6686], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Arashiyama Bamboo Grove</b><br>Kyoto');
+L.marker([34.8893, 135.8076], {icon: kyotoIcon}).addTo(map)
+    .bindPopup('<b>Byodo-in Temple</b><br>Uji (Jan 3)');
 
-// Osaka locations
-var osakaIcon = L.icon({
+// Lake Biwa/Otsu locations (Green)
+var otsuIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -271,41 +270,93 @@ var osakaIcon = L.icon({
     shadowSize: [41, 41]
 });
 
-L.marker([34.6686, 135.5005], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Dotonbori</b><br>Osaka');
-L.marker([34.6873, 135.5262], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Osaka Castle</b><br>Osaka');
-L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
-    .bindPopup('<b>Kuromon Market</b><br>Osaka');
+L.marker([35.0047, 135.8683], {icon: otsuIcon}).addTo(map)
+    .bindPopup('<b>Lake Biwa & Otsu</b><br>Biwako Prince Hotel (Jan 3-4)');
+L.marker([35.2745, 136.2593], {icon: otsuIcon}).addTo(map)
+    .bindPopup('<b>Hikone Castle</b><br>Lake Biwa');
+
+// Hokkaido locations (Yellow/Orange)
+var hokkaidoIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+L.marker([42.8048, 140.6874], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Niseko Ski Resort</b><br>Niseko (Jan 5-6)');
+L.marker([43.1907, 140.9947], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Otaru Canal</b><br>Otaru (Jan 7-10)');
+L.marker([43.0642, 141.3469], {icon: hokkaidoIcon}).addTo(map)
+    .bindPopup('<b>Sapporo</b><br>Sapporo (Jan 9 & Jan 11-14)');
 </script>
 
 <span id="more"></span> 
 
-<h3 id="Key-Locations"><a href="#Key-Locations" class="headerlink" title="Key Locations"></a>Key Locations</h3><p><strong>Tokyo</strong></p>
+<h3 id="Key-Locations"><a href="#Key-Locations" class="headerlink" title="Key Locations"></a>Key Locations</h3><p><strong>Tokyo (Dec 28-29)</strong></p>
 <ul>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Shibuya+Crossing/@35.6595,139.7004,17z">Shibuya Crossing</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Senso-ji/@35.7148,139.7967,17z">Senso-ji Temple</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Meiji+Shrine/@35.6764,139.6993,17z">Meiji Shrine</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/TeamLab+Borderless+Tokyo">TeamLab Borderless</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Tsukiji+Outer+Market/@35.6654,139.7707,17z">Tsukiji Outer Market</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Haneda+Airport">Haneda Airport</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Hamamatsucho,+Tokyo">Hamamatsucho</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Senso-ji/@35.7148,139.7967,17z">Asakusa &amp; Senso-ji Temple</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Tokyo+Skytree">Tokyo Skytree</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Akihabara">Akihabara</a></li>
 </ul>
-<p><strong>Kyoto</strong></p>
+<p><strong>Kyoto (Dec 30 - Jan 2)</strong></p>
 <ul>
 <li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Fushimi+Inari+Taisha/@34.9671,135.7727,17z">Fushimi Inari Shrine</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Kinkaku-ji/@35.0394,135.7292,17z">Kinkaku-ji (Golden Pavilion)</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Arashiyama+Bamboo+Grove/@35.0094,135.6686,17z">Arashiyama Bamboo Grove</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Tofuku-ji">Tofuku-ji Temple</a></li>
 <li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Gion/@35.0037,135.7751,16z">Gion District</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Nishiki+Market">Nishiki Market</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Nijo+Castle">Nijo Castle</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Chion-in">Chion-in Temple</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Kiyomizu-dera">Kiyomizu-dera</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Heian+Shrine">Heian Shrine</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Philosopher%27s+Path">Philosopher’s Path</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Ginkaku-ji">Ginkaku-ji</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Nanzen-ji">Nanzen-ji</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Arashiyama+Bamboo+Grove/@35.0094,135.6686,17z">Arashiyama Bamboo Grove</a></li>
 </ul>
-<p><strong>Osaka</strong></p>
+<p><strong>Uji (Jan 3)</strong></p>
 <ul>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Dotonbori/@34.6686,135.5005,17z">Dotonbori</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Osaka+Castle/@34.6873,135.5262,17z">Osaka Castle</a></li>
-<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Kuromon+Market/@34.6662,135.5062,17z">Kuromon Market</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Byodo-in">Byodo-in Temple</a></li>
+</ul>
+<p><strong>Lake Biwa&#x2F;Otsu (Jan 3-4)</strong></p>
+<ul>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Biwako+Otsu+Prince+Hotel">Biwako Otsu Prince Hotel</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Hikone+Castle">Hikone Castle</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Ishiyama-dera">Ishiyama Temple</a></li>
+</ul>
+<p><strong>Niseko (Jan 5-6)</strong></p>
+<ul>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Niseko">Niseko Ski Resort</a></li>
+</ul>
+<p><strong>Otaru (Jan 7-10)</strong></p>
+<ul>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Otaru+Canal">Otaru Canal</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Sankaku+Market">Sankaku Market</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Sakaimachi+Street">Sakaimachi Street</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/LeTAO+Otaru">LeTAO</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Otaru+Music+Box+Museum">Otaru Music Box Museum</a></li>
+</ul>
+<p><strong>Sapporo (Jan 9 &amp; Jan 11-14)</strong></p>
+<ul>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Sapporo+Beer+Museum">Sapporo Beer Museum</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Odori+Park">Odori Park</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Ramen+Yokocho">Ramen Yokocho</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Tanukikoji">Tanukikoji Shopping Street</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Mt.+Moiwa">Mt. Moiwa</a></li>
+<li>📍 <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Nijo+Market">Nijo Market</a></li>
 </ul>
 <h3 id="Getting-Around"><a href="#Getting-Around" class="headerlink" title="Getting Around"></a>Getting Around</h3><ul>
-<li>🚄 Tokyo to Kyoto: ~2h 15m via Shinkansen (Nozomi)</li>
-<li>🚄 Kyoto to Osaka: ~30m via JR or ~45m via local train</li>
-<li>🚄 Osaka to Tokyo: ~2h 30m via Shinkansen</li>
+<li>🚄 Tokyo to Kyoto: ~2h 15m via Shinkansen</li>
+<li>🚄 Kyoto to Uji: ~30m via JR</li>
+<li>🚄 Kyoto to Otsu: ~10m via JR</li>
+<li>🚄 Kyoto → Shin-Hakodate-Hokuto → Oshamambe → Niseko: ~8-9h via Shinkansen + local trains</li>
+<li>🚄 Niseko to Otaru: ~2h via local train</li>
+<li>🚄 Otaru to Sapporo: ~30-40m via JR</li>
+<li>✈️ Sapporo (CTS) to Shanghai: ~3h flight</li>
 </ul>
 <h2 id="Pre-Trip-Checklist"><a href="#Pre-Trip-Checklist" class="headerlink" title="Pre-Trip Checklist"></a>Pre-Trip Checklist</h2><ul>
 <li><input disabled="" type="checkbox"> evisa</li>
@@ -317,23 +368,107 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
 <li><input disabled="" type="checkbox"> Currency exchange (JPY)</li>
 <li><input disabled="" type="checkbox"> Download useful apps (Google Maps, Google Translate, Hyperdia)</li>
 </ul>
-<h2 id="Itinerary"><a href="#Itinerary" class="headerlink" title="Itinerary"></a>Itinerary</h2><h3 id="Tokyo"><a href="#Tokyo" class="headerlink" title="Tokyo"></a>Tokyo</h3><ul>
-<li>Shibuya Crossing</li>
-<li>Senso-ji Temple (Asakusa)</li>
-<li>Meiji Shrine</li>
-<li>TeamLab Borderless</li>
-<li>Tsukiji Outer Market</li>
+<h2 id="Detailed-Itinerary"><a href="#Detailed-Itinerary" class="headerlink" title="Detailed Itinerary"></a>Detailed Itinerary</h2><h3 id="Dec-28-Day-1-Arrival-in-Tokyo"><a href="#Dec-28-Day-1-Arrival-in-Tokyo" class="headerlink" title="Dec 28 (Day 1) - Arrival in Tokyo"></a>Dec 28 (Day 1) - Arrival in Tokyo</h3><ul>
+<li>Arrive Haneda Airport (17:40)</li>
+<li>Transfer to HOTEL TAVINOS Hamamatsucho</li>
+<li>Dinner in Hamamatsucho area</li>
+<li>Contact: +81-75-320-4111</li>
 </ul>
-<h3 id="Kyoto"><a href="#Kyoto" class="headerlink" title="Kyoto"></a>Kyoto</h3><ul>
-<li>Fushimi Inari Shrine</li>
-<li>Kinkaku-ji (Golden Pavilion)</li>
-<li>Arashiyama Bamboo Grove</li>
-<li>Gion District</li>
+<h3 id="Dec-29-Day-2-Tokyo-Exploration"><a href="#Dec-29-Day-2-Tokyo-Exploration" class="headerlink" title="Dec 29 (Day 2) - Tokyo Exploration"></a>Dec 29 (Day 2) - Tokyo Exploration</h3><ul>
+<li>Morning: Asakusa &amp; Senso-ji Temple</li>
+<li>Afternoon: Tokyo Skytree</li>
+<li>Evening: Akihabara</li>
+<li>Accommodation: HOTEL TAVINOS Hamamatsucho</li>
 </ul>
-<h3 id="Osaka"><a href="#Osaka" class="headerlink" title="Osaka"></a>Osaka</h3><ul>
-<li>Dotonbori</li>
-<li>Osaka Castle</li>
-<li>Kuromon Market</li>
+<h3 id="Dec-30-Day-3-Tokyo-to-Kyoto"><a href="#Dec-30-Day-3-Tokyo-to-Kyoto" class="headerlink" title="Dec 30 (Day 3) - Tokyo to Kyoto"></a>Dec 30 (Day 3) - Tokyo to Kyoto</h3><ul>
+<li>Morning: Shinkansen to Kyoto</li>
+<li>Afternoon: Fushimi Inari Shrine, Tofuku-ji Temple</li>
+<li>Evening: Dinner in Gion District</li>
+<li>Accommodation: TUNE STAY KYOTO</li>
+<li>Contact: +81 75-644-6660</li>
+</ul>
+<h3 id="Dec-31-Day-4-Kyoto-New-Year’s-Eve"><a href="#Dec-31-Day-4-Kyoto-New-Year’s-Eve" class="headerlink" title="Dec 31 (Day 4) - Kyoto New Year’s Eve"></a>Dec 31 (Day 4) - Kyoto New Year’s Eve</h3><ul>
+<li>Morning: Nishiki Market</li>
+<li>Afternoon: Nijo Castle</li>
+<li>Evening: Joyo-no-Kane (temple bell ringing) at Chion-in</li>
+<li>Accommodation: TUNE STAY KYOTO</li>
+</ul>
+<h3 id="Jan-1-Day-5-Kyoto-New-Year’s-Day"><a href="#Jan-1-Day-5-Kyoto-New-Year’s-Day" class="headerlink" title="Jan 1 (Day 5) - Kyoto New Year’s Day"></a>Jan 1 (Day 5) - Kyoto New Year’s Day</h3><ul>
+<li>Morning: Hatsumode (first shrine visit) at Kiyomizu-dera or Heian Shrine</li>
+<li>Afternoon: Philosopher’s Path</li>
+<li>Evening: Gion District</li>
+<li>Accommodation: TUNE STAY KYOTO</li>
+</ul>
+<h3 id="Jan-2-Day-6-Kyoto"><a href="#Jan-2-Day-6-Kyoto" class="headerlink" title="Jan 2 (Day 6) - Kyoto"></a>Jan 2 (Day 6) - Kyoto</h3><ul>
+<li>Morning: Ginkaku-ji, Nanzen-ji</li>
+<li>Afternoon: Arashiyama Bamboo Grove</li>
+<li>Accommodation: TUNE STAY KYOTO</li>
+</ul>
+<h3 id="Jan-3-Day-7-Uji-Transfer-to-Otsu"><a href="#Jan-3-Day-7-Uji-Transfer-to-Otsu" class="headerlink" title="Jan 3 (Day 7) - Uji &amp; Transfer to Otsu"></a>Jan 3 (Day 7) - Uji &amp; Transfer to Otsu</h3><ul>
+<li>Morning&#x2F;Afternoon: Uji (Byodo-in Temple, matcha experiences)</li>
+<li>Evening: Transfer to Otsu, Lake Biwa sunset</li>
+<li>Accommodation: Biwako Otsu Prince Hotel</li>
+<li>Contact: +81 77-521-1111</li>
+</ul>
+<h3 id="Jan-4-Day-8-Lake-Biwa"><a href="#Jan-4-Day-8-Lake-Biwa" class="headerlink" title="Jan 4 (Day 8) - Lake Biwa"></a>Jan 4 (Day 8) - Lake Biwa</h3><ul>
+<li>Morning: Hikone Castle</li>
+<li>Afternoon: Ishiyama Temple, lakeside walk</li>
+<li>Evening: Onsen at hotel</li>
+<li>Accommodation: Biwako Otsu Prince Hotel</li>
+</ul>
+<h3 id="Jan-5-Day-9-Transfer-to-Niseko"><a href="#Jan-5-Day-9-Transfer-to-Niseko" class="headerlink" title="Jan 5 (Day 9) - Transfer to Niseko"></a>Jan 5 (Day 9) - Transfer to Niseko</h3><ul>
+<li>Morning: Lakeside stroll</li>
+<li>Day: JR Ishiyama Station → Kyoto Station → Shin-Hakodate-Hokuto → Oshamambe → Niseko</li>
+<li>Accommodation: Niseko Side 6</li>
+<li>Contact: +81 136-55-5226</li>
+</ul>
+<h3 id="Jan-6-Day-10-Niseko"><a href="#Jan-6-Day-10-Niseko" class="headerlink" title="Jan 6 (Day 10) - Niseko"></a>Jan 6 (Day 10) - Niseko</h3><ul>
+<li>All day: Skiing&#x2F;snowboarding</li>
+<li>Evening: Onsen &amp; Hokkaido dinner</li>
+<li>Accommodation: Niseko Side 6</li>
+</ul>
+<h3 id="Jan-7-Day-11-Transfer-to-Otaru"><a href="#Jan-7-Day-11-Transfer-to-Otaru" class="headerlink" title="Jan 7 (Day 11) - Transfer to Otaru"></a>Jan 7 (Day 11) - Transfer to Otaru</h3><ul>
+<li>Morning: Transfer to Otaru</li>
+<li>Afternoon: Otaru Canal, Sankaku Market</li>
+<li>Evening: Glass shopping</li>
+<li>Accommodation: GRIDS PREMIUM Hotel Otaru</li>
+<li>Contact: +81 134-31-5801</li>
+</ul>
+<h3 id="Jan-8-Day-12-Otaru"><a href="#Jan-8-Day-12-Otaru" class="headerlink" title="Jan 8 (Day 12) - Otaru"></a>Jan 8 (Day 12) - Otaru</h3><ul>
+<li>Morning: Sakaimachi Street</li>
+<li>Afternoon: LeTAO, Music Box Museum, Art Base</li>
+<li>Accommodation: GRIDS PREMIUM Hotel Otaru</li>
+</ul>
+<h3 id="Jan-9-Day-13-Sapporo-Day-Trip"><a href="#Jan-9-Day-13-Sapporo-Day-Trip" class="headerlink" title="Jan 9 (Day 13) - Sapporo Day Trip"></a>Jan 9 (Day 13) - Sapporo Day Trip</h3><ul>
+<li>Day trip to Sapporo:<ul>
+<li>Beer Museum</li>
+<li>Odori Park</li>
+<li>Ramen Yokocho</li>
+<li>Tanukikoji Shopping Street</li>
+</ul>
+</li>
+<li>Return to Otaru</li>
+<li>Accommodation: GRIDS PREMIUM Hotel Otaru</li>
+</ul>
+<h3 id="Jan-10-Day-14-Otaru"><a href="#Jan-10-Day-14-Otaru" class="headerlink" title="Jan 10 (Day 14) - Otaru"></a>Jan 10 (Day 14) - Otaru</h3><ul>
+<li>Relaxing day: canal walk, souvenirs, seafood dinner</li>
+<li>Accommodation: GRIDS PREMIUM Hotel Otaru</li>
+</ul>
+<h3 id="Jan-11-13-Days-15-17-Sapporo"><a href="#Jan-11-13-Days-15-17-Sapporo" class="headerlink" title="Jan 11-13 (Days 15-17) - Sapporo"></a>Jan 11-13 (Days 15-17) - Sapporo</h3><ul>
+<li>Transfer to Sapporo</li>
+<li>Activities:<ul>
+<li>Mt. Moiwa night view</li>
+<li>Nijo Market</li>
+<li>Tanukikoji Shopping Street</li>
+<li>Sapporo Station shopping area</li>
+</ul>
+</li>
+<li>Accommodation: Gardens Cabin</li>
+<li>Contact: +81 11-522-8585</li>
+</ul>
+<h3 id="Jan-14-Day-18-Departure"><a href="#Jan-14-Day-18-Departure" class="headerlink" title="Jan 14 (Day 18) - Departure"></a>Jan 14 (Day 18) - Departure</h3><ul>
+<li>Fly from New Chitose Airport (CTS) to Shanghai</li>
+<li>Contact: (718) 925-4833</li>
 </ul>
 <h2 id="Travel-Tips"><a href="#Travel-Tips" class="headerlink" title="Travel Tips"></a>Travel Tips</h2><ul>
 <li>Get a Suica&#x2F;Pasmo card for transportation</li>
@@ -342,13 +477,25 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
 <li>Tipping is not customary</li>
 <li>Learn basic phrases: Arigatou gozaimasu (thank you), Sumimasen (excuse me)</li>
 </ul>
-<h2 id="Food-to-Try"><a href="#Food-to-Try" class="headerlink" title="Food to Try"></a>Food to Try</h2><ul>
-<li>Ramen</li>
-<li>Sushi</li>
-<li>Takoyaki</li>
-<li>Okonomiyaki</li>
+<h2 id="Food-to-Try"><a href="#Food-to-Try" class="headerlink" title="Food to Try"></a>Food to Try</h2><p><strong>Tokyo</strong></p>
+<ul>
+<li>Fresh sushi and sashimi</li>
 <li>Tempura</li>
-<li>Matcha desserts</li>
+</ul>
+<p><strong>Kyoto</strong></p>
+<ul>
+<li>Kaiseki (traditional multi-course meal)</li>
+<li>Matcha desserts and tea in Uji</li>
+<li>Yudofu (tofu hot pot)</li>
+</ul>
+<p><strong>Hokkaido Specialties</strong></p>
+<ul>
+<li>Fresh seafood (crab, uni, ikura)</li>
+<li>Hokkaido ramen (miso-based)</li>
+<li>Jingisukan (grilled lamb)</li>
+<li>Soup curry</li>
+<li>Dairy products (milk, ice cream)</li>
+<li>LeTAO cheesecake (Otaru)</li>
 </ul>
 <h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2>
     </div>
@@ -365,10 +512,13 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/10/14/books-10-25/" rel="prev" title="Books 10/25">
-      <i class="fa fa-chevron-left"></i> Books 10/25
+    <a href="/2025/10/14/books-10-25/" rel="prev" title="Books Oct-2025">
+      <i class="fa fa-chevron-left"></i> Books Oct-2025
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2025/10/21/C-cheatsheet/" rel="next" title="C++ Cheat Sheet">
+      C++ Cheat Sheet <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -427,7 +577,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">1.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Locations"><span class="nav-number">1.1.</span> <span class="nav-text">Key Locations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getting-Around"><span class="nav-number">1.2.</span> <span class="nav-text">Getting Around</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pre-Trip-Checklist"><span class="nav-number">2.</span> <span class="nav-text">Pre-Trip Checklist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Itinerary"><span class="nav-number">3.</span> <span class="nav-text">Itinerary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tokyo"><span class="nav-number">3.1.</span> <span class="nav-text">Tokyo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kyoto"><span class="nav-number">3.2.</span> <span class="nav-text">Kyoto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Osaka"><span class="nav-number">3.3.</span> <span class="nav-text">Osaka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Travel-Tips"><span class="nav-number">4.</span> <span class="nav-text">Travel Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Food-to-Try"><span class="nav-number">5.</span> <span class="nav-text">Food to Try</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number">6.</span> <span class="nav-text">Notes</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Japan-map"><span class="nav-number">1.</span> <span class="nav-text">Japan map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Locations"><span class="nav-number">1.1.</span> <span class="nav-text">Key Locations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getting-Around"><span class="nav-number">1.2.</span> <span class="nav-text">Getting Around</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pre-Trip-Checklist"><span class="nav-number">2.</span> <span class="nav-text">Pre-Trip Checklist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-Itinerary"><span class="nav-number">3.</span> <span class="nav-text">Detailed Itinerary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dec-28-Day-1-Arrival-in-Tokyo"><span class="nav-number">3.1.</span> <span class="nav-text">Dec 28 (Day 1) - Arrival in Tokyo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dec-29-Day-2-Tokyo-Exploration"><span class="nav-number">3.2.</span> <span class="nav-text">Dec 29 (Day 2) - Tokyo Exploration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dec-30-Day-3-Tokyo-to-Kyoto"><span class="nav-number">3.3.</span> <span class="nav-text">Dec 30 (Day 3) - Tokyo to Kyoto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dec-31-Day-4-Kyoto-New-Year%E2%80%99s-Eve"><span class="nav-number">3.4.</span> <span class="nav-text">Dec 31 (Day 4) - Kyoto New Year’s Eve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-1-Day-5-Kyoto-New-Year%E2%80%99s-Day"><span class="nav-number">3.5.</span> <span class="nav-text">Jan 1 (Day 5) - Kyoto New Year’s Day</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-2-Day-6-Kyoto"><span class="nav-number">3.6.</span> <span class="nav-text">Jan 2 (Day 6) - Kyoto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-3-Day-7-Uji-Transfer-to-Otsu"><span class="nav-number">3.7.</span> <span class="nav-text">Jan 3 (Day 7) - Uji &amp; Transfer to Otsu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-4-Day-8-Lake-Biwa"><span class="nav-number">3.8.</span> <span class="nav-text">Jan 4 (Day 8) - Lake Biwa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-5-Day-9-Transfer-to-Niseko"><span class="nav-number">3.9.</span> <span class="nav-text">Jan 5 (Day 9) - Transfer to Niseko</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-6-Day-10-Niseko"><span class="nav-number">3.10.</span> <span class="nav-text">Jan 6 (Day 10) - Niseko</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-7-Day-11-Transfer-to-Otaru"><span class="nav-number">3.11.</span> <span class="nav-text">Jan 7 (Day 11) - Transfer to Otaru</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-8-Day-12-Otaru"><span class="nav-number">3.12.</span> <span class="nav-text">Jan 8 (Day 12) - Otaru</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-9-Day-13-Sapporo-Day-Trip"><span class="nav-number">3.13.</span> <span class="nav-text">Jan 9 (Day 13) - Sapporo Day Trip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-10-Day-14-Otaru"><span class="nav-number">3.14.</span> <span class="nav-text">Jan 10 (Day 14) - Otaru</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-11-13-Days-15-17-Sapporo"><span class="nav-number">3.15.</span> <span class="nav-text">Jan 11-13 (Days 15-17) - Sapporo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jan-14-Day-18-Departure"><span class="nav-number">3.16.</span> <span class="nav-text">Jan 14 (Day 18) - Departure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Travel-Tips"><span class="nav-number">4.</span> <span class="nav-text">Travel Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Food-to-Try"><span class="nav-number">5.</span> <span class="nav-text">Food to Try</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number">6.</span> <span class="nav-text">Notes</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,7 +593,7 @@ L.marker([34.6662, 135.5062], {icon: osakaIcon}).addTo(map)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
