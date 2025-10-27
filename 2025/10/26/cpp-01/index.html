@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1. 基本数据类型知识点C++基本数据类型包括：整型、浮点型、字符型、布尔型    类型 大小 范围    int 4字节 -2^31 ~ 2^31-1   long long 8字节 -2^63 ~ 2^63-1   float 4字节 约7位精度   double 8字节 约15位精度   char 1字节 -128 ~ 127   bool 1字节 true&#x2F;false   面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++八股文01 - 基础语法与类型系统">
+<meta property="og:url" content="http://example.com/2025/10/26/cpp-01/index.html">
+<meta property="og:site_name" content="Ruihan&#39;s Blog">
+<meta property="og:description" content="1. 基本数据类型知识点C++基本数据类型包括：整型、浮点型、字符型、布尔型    类型 大小 范围    int 4字节 -2^31 ~ 2^31-1   long long 8字节 -2^63 ~ 2^63-1   float 4字节 约7位精度   double 8字节 约15位精度   char 1字节 -128 ~ 127   bool 1字节 true&#x2F;false   面">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-26T20:12:20.000Z">
+<meta property="article:modified_time" content="2025-10-27T01:26:50.997Z">
+<meta property="article:author" content="Ruihan">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>C++八股文01 - 基础语法与类型系统</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Ruihan11">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/10/15/jp-travel/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/26/cpp-01/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/26/cpp-01/&text=C++八股文01 - 基础语法与类型系统"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/26/cpp-01/&is_video=false&description=C++八股文01 - 基础语法与类型系统"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++八股文01 - 基础语法与类型系统&body=Check out this article: http://example.com/2025/10/26/cpp-01/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/26/cpp-01/&name=C++八股文01 - 基础语法与类型系统&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/26/cpp-01/&t=C++八股文01 - 基础语法与类型系统"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94"><span class="toc-number">1.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">2. 指针与引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-1"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-1"><span class="toc-number">2.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-const%E4%B8%8E%E6%8C%87%E9%92%88%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">3.</span> <span class="toc-text">3. const与指针的组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-2"><span class="toc-number">3.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-2"><span class="toc-number">3.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-const%E4%B8%8Econstexpr"><span class="toc-number">4.</span> <span class="toc-text">4. const与constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-3"><span class="toc-number">4.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-3"><span class="toc-number">4.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC"><span class="toc-number">5.</span> <span class="toc-text">5. 左值与右值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-4"><span class="toc-number">5.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-4"><span class="toc-number">5.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-auto%E4%B8%8Edecltype%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC"><span class="toc-number">6.</span> <span class="toc-text">6. auto与decltype类型推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-5"><span class="toc-number">6.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-5"><span class="toc-number">6.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">7. 四种类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-6"><span class="toc-number">7.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-6"><span class="toc-number">7.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-static%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">8.</span> <span class="toc-text">8. static关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-7"><span class="toc-number">8.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-7"><span class="toc-number">8.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-inline%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">9.</span> <span class="toc-text">9. inline关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-8"><span class="toc-number">9.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-8"><span class="toc-number">9.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-extern%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">10.</span> <span class="toc-text">10. extern关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-9"><span class="toc-number">10.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-9"><span class="toc-number">10.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9%E9%80%9F%E8%AE%B0"><span class="toc-number">11.</span> <span class="toc-text">总结：核心要点速记</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        C++八股文01 - 基础语法与类型系统
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Ruihan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-26T20:12:20.000Z" class="dt-published" itemprop="datePublished">2025-10-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <span id="more"></span>
+
+<h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1. 基本数据类型"></a>1. 基本数据类型</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>C++基本数据类型包括：整型、浮点型、字符型、布尔型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int</code></td>
+<td>4字节</td>
+<td>-2^31 ~ 2^31-1</td>
+</tr>
+<tr>
+<td><code>long long</code></td>
+<td>8字节</td>
+<td>-2^63 ~ 2^63-1</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4字节</td>
+<td>约7位精度</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8字节</td>
+<td>约15位精度</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>1字节</td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>1字节</td>
+<td>true&#x2F;false</td>
+</tr>
+</tbody></table>
+<h3 id="面试回答"><a href="#面试回答" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: C++基本数据类型有哪些？各占多少字节？</strong></p>
+<p>A: C++基本类型包括：</p>
+<ul>
+<li>整型：<code>int</code>(4字节)、<code>long long</code>(8字节)、<code>short</code>(2字节)</li>
+<li>浮点型：<code>float</code>(4字节)、<code>double</code>(8字节)</li>
+<li>字符型：<code>char</code>(1字节)</li>
+<li>布尔型：<code>bool</code>(1字节)</li>
+</ul>
+<p>需要注意的是，除了<code>char</code>固定1字节，其他类型大小在不同平台可能不同，可用<code>sizeof</code>查询。</p>
+<hr>
+<h2 id="2-指针与引用"><a href="#2-指针与引用" class="headerlink" title="2. 指针与引用"></a>2. 指针与引用</h2><h3 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h3><p><strong>指针</strong>：存储变量地址的变量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> value = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>* ptr = &amp;value;  <span class="comment">// ptr存储value的地址</span></span><br><span class="line">*ptr = <span class="number">20</span>;          <span class="comment">// 解引用，修改value</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>引用</strong>：变量的别名</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> value = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>&amp; ref = value;   <span class="comment">// ref是value的别名</span></span><br><span class="line">ref = <span class="number">20</span>;           <span class="comment">// 直接修改value</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-1"><a href="#面试回答-1" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: 指针和引用的区别？</strong></p>
+<p>A: </p>
+<ol>
+<li><strong>本质不同</strong>：指针是变量，引用是别名</li>
+<li><strong>能否为空</strong>：指针可以为<code>nullptr</code>，引用必须初始化且不能为空</li>
+<li><strong>能否重新赋值</strong>：指针可以改变指向，引用一旦绑定不能改变</li>
+<li><strong>内存占用</strong>：指针占用内存（通常4&#x2F;8字节），引用不额外占用</li>
+<li><strong>使用方式</strong>：指针需解引用<code>*ptr</code>，引用直接使用</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* ptr = &amp;a;</span><br><span class="line">ptr = &amp;b;        <span class="comment">// ✅ 指针可以改变指向</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>&amp; ref = a;</span><br><span class="line"><span class="comment">// ref = b;      // ❌ 这是赋值，不是改变绑定</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-const与指针的组合"><a href="#3-const与指针的组合" class="headerlink" title="3. const与指针的组合"></a>3. const与指针的组合</h2><h3 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>语法</th>
+<th>能否改值</th>
+<th>能否改向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>普通指针</td>
+<td><code>int* p</code></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>指向常量的指针</td>
+<td><code>const int* p</code></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>常量指针</td>
+<td><code>int* const p</code></td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>指向常量的常量指针</td>
+<td><code>const int* const p</code></td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> value = <span class="number">10</span>, another = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指向常量的指针</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span>* p1 = &amp;value;</span><br><span class="line"><span class="comment">// *p1 = 30;     // ❌ 不能改值</span></span><br><span class="line">p1 = &amp;another;   <span class="comment">// ✅ 可以改向</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量指针</span></span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> p2 = &amp;value;</span><br><span class="line">*p2 = <span class="number">30</span>;        <span class="comment">// ✅ 可以改值</span></span><br><span class="line"><span class="comment">// p2 = &amp;another; // ❌ 不能改向</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-2"><a href="#面试回答-2" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: <code>const int*</code>、<code>int* const</code>、<code>const int* const</code>的区别？</strong></p>
+<p>A: 记忆技巧：从右往左读，看const在星号的哪边</p>
+<ul>
+<li><code>const int* p</code>：指向常量的指针，<strong>不能改值，可以改向</strong><ul>
+<li>const在*左边，限制指向的内容</li>
+</ul>
+</li>
+<li><code>int* const p</code>：常量指针，<strong>可以改值，不能改向</strong><ul>
+<li>const在*右边，限制指针本身</li>
+</ul>
+</li>
+<li><code>const int* const p</code>：两者都是常量，<strong>既不能改值，也不能改向</strong></li>
+</ul>
+<hr>
+<h2 id="4-const与constexpr"><a href="#4-const与constexpr" class="headerlink" title="4. const与constexpr"></a>4. const与constexpr</h2><h3 id="知识点-3"><a href="#知识点-3" class="headerlink" title="知识点"></a>知识点</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>const</th>
+<th>constexpr</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>求值时机</td>
+<td>运行时或编译时</td>
+<td>编译时</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>不可修改的变量</td>
+<td>编译期常量、常量表达式</td>
+</tr>
+<tr>
+<td>函数</td>
+<td>不能修改成员变量</td>
+<td>必须能在编译期计算</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">10</span>;           <span class="comment">// 运行时常量</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> b = <span class="number">20</span>;       <span class="comment">// 编译期常量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="type">int</span> <span class="title">factorial</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt;= <span class="number">1</span> ? <span class="number">1</span> : n * <span class="built_in">factorial</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> result = <span class="built_in">factorial</span>(<span class="number">5</span>);  <span class="comment">// 编译期计算</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-3"><a href="#面试回答-3" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: const和constexpr的区别？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>求值时机</strong>：</p>
+<ul>
+<li><code>const</code>：运行时或编译时均可</li>
+<li><code>constexpr</code>：必须在编译期确定</li>
+</ul>
+</li>
+<li><p><strong>使用场景</strong>：</p>
+<ul>
+<li><code>const</code>：表示”不可修改”，用于变量、成员函数</li>
+<li><code>constexpr</code>：表示”编译期常量”，用于常量表达式、性能优化</li>
+</ul>
+</li>
+<li><p><strong>函数差异</strong>：</p>
+<ul>
+<li><code>const</code>成员函数：不修改成员变量</li>
+<li><code>constexpr</code>函数：可在编译期执行，有严格限制</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> a = x;           <span class="comment">// ✅ 运行时确定</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> b = x;       <span class="comment">// ❌ 错误，x不是编译期常量</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> c = <span class="number">100</span>;     <span class="comment">// ✅ 编译期常量</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-左值与右值"><a href="#5-左值与右值" class="headerlink" title="5. 左值与右值"></a>5. 左值与右值</h2><h3 id="知识点-4"><a href="#知识点-4" class="headerlink" title="知识点"></a>知识点</h3><p><strong>左值（lvalue）</strong>：有名字，可以取地址，位于赋值号左边<br><strong>右值（rvalue）</strong>：临时值，不能取地址，位于赋值号右边</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>;        <span class="comment">// a是左值</span></span><br><span class="line"><span class="type">int</span> b = a + <span class="number">5</span>;     <span class="comment">// a+5是右值表达式</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* pa = &amp;a;      <span class="comment">// ✅ 左值可以取地址</span></span><br><span class="line"><span class="comment">// int* pb = &amp;(a+5); // ❌ 右值不能取地址</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>&amp; lref = a;           <span class="comment">// ✅ 左值引用绑定左值</span></span><br><span class="line"><span class="comment">// int&amp; lref2 = 10;      // ❌ 左值引用不能绑定右值</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span>&amp; cref = <span class="number">10</span>;    <span class="comment">// ✅ const左值引用可以绑定右值</span></span><br><span class="line"><span class="type">int</span>&amp;&amp; rref = <span class="number">10</span>;         <span class="comment">// ✅ 右值引用绑定右值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-4"><a href="#面试回答-4" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: 什么是左值和右值？有什么区别？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>定义</strong>：</p>
+<ul>
+<li>左值：有持久性，有名字，可以取地址（如变量）</li>
+<li>右值：临时性，无名字，不能取地址（如字面量、表达式结果）</li>
+</ul>
+</li>
+<li><p><strong>引用绑定规则</strong>：</p>
+<ul>
+<li>左值引用<code>T&amp;</code>：只能绑定左值</li>
+<li>const左值引用<code>const T&amp;</code>：可以绑定左值和右值</li>
+<li>右值引用<code>T&amp;&amp;</code>：只能绑定右值（C++11）</li>
+</ul>
+</li>
+<li><p><strong>实际意义</strong>：</p>
+<ul>
+<li>右值引用是移动语义的基础</li>
+<li>延长临时对象生命周期</li>
+<li>避免不必要的拷贝</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-auto与decltype类型推导"><a href="#6-auto与decltype类型推导" class="headerlink" title="6. auto与decltype类型推导"></a>6. auto与decltype类型推导</h2><h3 id="知识点-5"><a href="#知识点-5" class="headerlink" title="知识点"></a>知识点</h3><p><strong>auto推导规则</strong>：</p>
+<ul>
+<li>去掉顶层const和引用</li>
+<li><code>auto&amp;</code>保留引用和const</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> cx = x;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span>&amp; crx = x;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> a1 = x;      <span class="comment">// int</span></span><br><span class="line"><span class="keyword">auto</span> a2 = cx;     <span class="comment">// int（去掉const）</span></span><br><span class="line"><span class="keyword">auto</span> a3 = crx;    <span class="comment">// int（去掉引用和const）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span>&amp; a4 = cx;    <span class="comment">// const int&amp;（保留const）</span></span><br><span class="line"><span class="type">const</span> <span class="keyword">auto</span>&amp; a5 = x; <span class="comment">// const int&amp;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>decltype推导规则</strong>：</p>
+<ul>
+<li>保留类型完整信息</li>
+<li>括号改变结果</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">decltype</span>(x) a = x;      <span class="comment">// int</span></span><br><span class="line"><span class="keyword">decltype</span>((x)) b = x;    <span class="comment">// int&amp;（括号使其成为表达式）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-5"><a href="#面试回答-5" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: auto和decltype的区别？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>推导规则</strong>：</p>
+<ul>
+<li><code>auto</code>：类似模板推导，去掉顶层const和引用</li>
+<li><code>decltype</code>：保留表达式的完整类型信息</li>
+</ul>
+</li>
+<li><p><strong>使用场景</strong>：</p>
+<ul>
+<li><code>auto</code>：简化变量声明，类型自动推导</li>
+<li><code>decltype</code>：需要精确类型信息，如返回类型推导</li>
+</ul>
+</li>
+<li><p><strong>关键差异</strong>：</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">auto</span> a = x;           <span class="comment">// int（丢失const）</span></span><br><span class="line"><span class="keyword">decltype</span>(x) b = x;    <span class="comment">// const int（保留const）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">decltype</span>(x) c;        <span class="comment">// int（变量）</span></span><br><span class="line"><span class="keyword">decltype</span>((x)) d = x;  <span class="comment">// int&amp;（表达式）</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-四种类型转换"><a href="#7-四种类型转换" class="headerlink" title="7. 四种类型转换"></a>7. 四种类型转换</h2><h3 id="知识点-6"><a href="#知识点-6" class="headerlink" title="知识点"></a>知识点</h3><table>
+<thead>
+<tr>
+<th>转换</th>
+<th>用途</th>
+<th>检查时机</th>
+<th>安全性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>static_cast</code></td>
+<td>基础类型转换、类层次向上转换</td>
+<td>编译期</td>
+<td>较安全</td>
+</tr>
+<tr>
+<td><code>dynamic_cast</code></td>
+<td>多态类型的向下转换</td>
+<td>运行期</td>
+<td>安全</td>
+</tr>
+<tr>
+<td><code>const_cast</code></td>
+<td>去除const&#x2F;volatile</td>
+<td>编译期</td>
+<td>危险</td>
+</tr>
+<tr>
+<td><code>reinterpret_cast</code></td>
+<td>指针类型转换、整数与指针互转</td>
+<td>编译期</td>
+<td>极危险</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. static_cast</span></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">int</span> i = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(d);  <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. dynamic_cast（需要多态）</span></span><br><span class="line">Base* base = <span class="keyword">new</span> <span class="built_in">Derived</span>();</span><br><span class="line">Derived* derived = <span class="built_in">dynamic_cast</span>&lt;Derived*&gt;(base);  <span class="comment">// 运行时检查</span></span><br><span class="line"><span class="keyword">if</span> (derived) &#123; <span class="comment">/* 转换成功 */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. const_cast</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>* p = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>*&gt;(&amp;x);  <span class="comment">// 去除const</span></span><br><span class="line">*p = <span class="number">20</span>;  <span class="comment">// ⚠️ 未定义行为</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. reinterpret_cast</span></span><br><span class="line"><span class="type">int</span> num = <span class="number">65</span>;</span><br><span class="line"><span class="type">char</span>* c = <span class="built_in">reinterpret_cast</span>&lt;<span class="type">char</span>*&gt;(&amp;num);  <span class="comment">// &#x27;A&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-6"><a href="#面试回答-6" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: C++四种类型转换的区别和使用场景？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>static_cast</strong>：</p>
+<ul>
+<li>编译期检查的类型转换</li>
+<li>用于：基本类型转换、类层次向上转换、void*转换</li>
+<li>不能去除const</li>
+</ul>
+</li>
+<li><p><strong>dynamic_cast</strong>：</p>
+<ul>
+<li>运行时类型检查，用于多态类型</li>
+<li>只能用于有虚函数的类</li>
+<li>失败返回nullptr（指针）或抛异常（引用）</li>
+<li>用于安全的向下转换</li>
+</ul>
+</li>
+<li><p><strong>const_cast</strong>：</p>
+<ul>
+<li>唯一能去除const&#x2F;volatile的转换</li>
+<li>⚠️ 危险：修改原本const的对象是未定义行为</li>
+<li>合法场景：去除指向非const对象的const指针的const属性</li>
+</ul>
+</li>
+<li><p><strong>reinterpret_cast</strong>：</p>
+<ul>
+<li>重新解释比特位，不做任何检查</li>
+<li>用于：指针与整数互转、不同指针类型转换</li>
+<li>⚠️ 极度危险，破坏类型系统</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="8-static关键字"><a href="#8-static关键字" class="headerlink" title="8. static关键字"></a>8. static关键字</h2><h3 id="知识点-7"><a href="#知识点-7" class="headerlink" title="知识点"></a>知识点</h3><table>
+<thead>
+<tr>
+<th>用法</th>
+<th>作用域</th>
+<th>生命周期</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static局部变量</td>
+<td>函数内</td>
+<td>程序结束</td>
+<td>只初始化一次</td>
+</tr>
+<tr>
+<td>static全局变量&#x2F;函数</td>
+<td>当前文件</td>
+<td>程序结束</td>
+<td>内部链接</td>
+</tr>
+<tr>
+<td>static成员变量</td>
+<td>类</td>
+<td>程序结束</td>
+<td>所有对象共享</td>
+</tr>
+<tr>
+<td>static成员函数</td>
+<td>类</td>
+<td>-</td>
+<td>不依赖对象，只能访问static成员</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. static局部变量</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> count = <span class="number">0</span>;  <span class="comment">// 只初始化一次</span></span><br><span class="line">    count++;</span><br><span class="line">    cout &lt;&lt; count &lt;&lt; endl;  <span class="comment">// 1, 2, 3...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. static全局变量（文件作用域）</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> globalVar = <span class="number">100</span>;  <span class="comment">// 仅本文件可见</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. static成员</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> staticMember;       <span class="comment">// 所有对象共享</span></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">staticFunc</span><span class="params">()</span> </span>&#123;     <span class="comment">// 不依赖对象</span></span><br><span class="line">        cout &lt;&lt; staticMember &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> MyClass::staticMember = <span class="number">0</span>;     <span class="comment">// 类外定义</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-7"><a href="#面试回答-7" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: static关键字的作用？</strong></p>
+<p>A: static有四种用法：</p>
+<ol>
+<li><p><strong>static局部变量</strong>：</p>
+<ul>
+<li>生命周期：整个程序运行期</li>
+<li>只初始化一次，保持值不变</li>
+<li>用于：计数器、缓存</li>
+</ul>
+</li>
+<li><p><strong>static全局变量&#x2F;函数</strong>：</p>
+<ul>
+<li>作用域：限制在当前文件（内部链接）</li>
+<li>用于：防止命名冲突</li>
+</ul>
+</li>
+<li><p><strong>static成员变量</strong>：</p>
+<ul>
+<li>所有对象共享同一份</li>
+<li>必须在类外定义</li>
+<li>用于：对象计数、共享配置</li>
+</ul>
+</li>
+<li><p><strong>static成员函数</strong>：</p>
+<ul>
+<li>不依赖于对象，通过类名调用</li>
+<li>只能访问static成员</li>
+<li>没有this指针</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="9-inline关键字"><a href="#9-inline关键字" class="headerlink" title="9. inline关键字"></a>9. inline关键字</h2><h3 id="知识点-8"><a href="#知识点-8" class="headerlink" title="知识点"></a>知识点</h3><p><strong>三个作用</strong>：</p>
+<ol>
+<li>建议编译器内联展开（可能被忽略）</li>
+<li>允许在头文件中定义函数（避免重复定义）</li>
+<li>C++17：inline变量</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 传统inline</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 类内定义自动inline</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> value; &#125;  <span class="comment">// 自动inline</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. C++17 inline变量</span></span><br><span class="line"><span class="keyword">inline</span> <span class="type">int</span> globalConfig = <span class="number">100</span>;  <span class="comment">// 可在头文件定义</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-8"><a href="#面试回答-8" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: inline关键字的作用？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>内联展开</strong>：建议编译器将函数调用处替换为函数体，减少函数调用开销</p>
+<ul>
+<li>编译器可能忽略（函数太大、递归等）</li>
+<li>现代编译器会自动内联优化</li>
+</ul>
+</li>
+<li><p><strong>允许重复定义</strong>：可在头文件中定义，避免链接错误</p>
+<ul>
+<li>每个编译单元可见同一定义</li>
+<li>编译器保证只保留一份实现</li>
+</ul>
+</li>
+<li><p><strong>类内定义自动inline</strong>：</p>
+<ul>
+<li>类内实现的成员函数自动是inline</li>
+<li>不需显式声明</li>
+</ul>
+</li>
+<li><p><strong>C++17 inline变量</strong>：</p>
+<ul>
+<li>允许在头文件中定义全局变量</li>
+<li>替代部分static的使用</li>
+</ul>
+</li>
+</ol>
+<p><strong>注意</strong>：inline是建议而非强制，最终由编译器决定</p>
+<hr>
+<h2 id="10-extern关键字"><a href="#10-extern关键字" class="headerlink" title="10. extern关键字"></a>10. extern关键字</h2><h3 id="知识点-9"><a href="#知识点-9" class="headerlink" title="知识点"></a>知识点</h3><p><strong>作用</strong>：声明外部链接，引用其他文件定义的变量&#x2F;函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file1.cpp</span></span><br><span class="line"><span class="type">int</span> globalVar = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// file2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> globalVar;  <span class="comment">// 声明，不分配内存</span></span><br><span class="line">cout &lt;&lt; globalVar;     <span class="comment">// 使用file1.cpp中的定义</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>extern “C”</strong>：防止C++名称修饰，用于C&#x2F;C++混合编程</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">c_function</span><span class="params">()</span></span>;  <span class="comment">// 使用C链接方式</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="面试回答-9"><a href="#面试回答-9" class="headerlink" title="面试回答"></a>面试回答</h3><p><strong>Q: extern关键字的作用？</strong></p>
+<p>A:</p>
+<ol>
+<li><p><strong>声明外部变量</strong>：</p>
+<ul>
+<li>告诉编译器变量定义在其他文件</li>
+<li>不分配内存，只是声明</li>
+<li>配合多文件编程</li>
+</ul>
+</li>
+<li><p><strong>与static对比</strong>：</p>
+<ul>
+<li><code>extern</code>：外部链接，其他文件可见（默认）</li>
+<li><code>static</code>：内部链接，仅本文件可见</li>
+</ul>
+</li>
+<li><p><strong>extern “C”</strong>：</p>
+<ul>
+<li>防止C++名称修饰（name mangling）</li>
+<li>用于调用C库或被C调用</li>
+<li>C++函数名会包含参数类型信息，C不会</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++: _Z3addii (包含参数信息)</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C: add (不修饰)</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结：核心要点速记"><a href="#总结：核心要点速记" class="headerlink" title="总结：核心要点速记"></a>总结：核心要点速记</h2><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>核心要点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>指针vs引用</strong></td>
+<td>指针可为空可改向，引用是别名不能改</td>
+</tr>
+<tr>
+<td><strong>const指针</strong></td>
+<td>const在<em>左→值不可改，const在</em>右→向不可改</td>
+</tr>
+<tr>
+<td><strong>const vs constexpr</strong></td>
+<td>const运行时，constexpr编译期</td>
+</tr>
+<tr>
+<td><strong>左值vs右值</strong></td>
+<td>左值有名可取址，右值临时不可址</td>
+</tr>
+<tr>
+<td><strong>auto</strong></td>
+<td>去顶层const和引用，简化声明</td>
+</tr>
+<tr>
+<td><strong>decltype</strong></td>
+<td>保留完整类型，括号变引用</td>
+</tr>
+<tr>
+<td><strong>static_cast</strong></td>
+<td>基础类型转换，编译期检查</td>
+</tr>
+<tr>
+<td><strong>dynamic_cast</strong></td>
+<td>多态向下转换，运行期检查，失败返nullptr</td>
+</tr>
+<tr>
+<td><strong>const_cast</strong></td>
+<td>去除const，危险操作</td>
+</tr>
+<tr>
+<td><strong>reinterpret_cast</strong></td>
+<td>重解释比特，极度危险</td>
+</tr>
+<tr>
+<td><strong>static局部</strong></td>
+<td>只初始化一次，生命周期到程序结束</td>
+</tr>
+<tr>
+<td><strong>static成员</strong></td>
+<td>所有对象共享，通过类名访问</td>
+</tr>
+<tr>
+<td><strong>inline</strong></td>
+<td>建议内联+允许重复定义</td>
+</tr>
+<tr>
+<td><strong>extern</strong></td>
+<td>声明外部链接，多文件共享</td>
+</tr>
+</tbody></table>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/Ruihan11">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94"><span class="toc-number">1.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">2. 指针与引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-1"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-1"><span class="toc-number">2.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-const%E4%B8%8E%E6%8C%87%E9%92%88%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">3.</span> <span class="toc-text">3. const与指针的组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-2"><span class="toc-number">3.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-2"><span class="toc-number">3.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-const%E4%B8%8Econstexpr"><span class="toc-number">4.</span> <span class="toc-text">4. const与constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-3"><span class="toc-number">4.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-3"><span class="toc-number">4.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC"><span class="toc-number">5.</span> <span class="toc-text">5. 左值与右值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-4"><span class="toc-number">5.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-4"><span class="toc-number">5.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-auto%E4%B8%8Edecltype%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC"><span class="toc-number">6.</span> <span class="toc-text">6. auto与decltype类型推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-5"><span class="toc-number">6.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-5"><span class="toc-number">6.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">7. 四种类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-6"><span class="toc-number">7.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-6"><span class="toc-number">7.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-static%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">8.</span> <span class="toc-text">8. static关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-7"><span class="toc-number">8.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-7"><span class="toc-number">8.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-inline%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">9.</span> <span class="toc-text">9. inline关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-8"><span class="toc-number">9.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-8"><span class="toc-number">9.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-extern%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">10.</span> <span class="toc-text">10. extern关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-9"><span class="toc-number">10.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%9B%9E%E7%AD%94-9"><span class="toc-number">10.2.</span> <span class="toc-text">面试回答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9%E9%80%9F%E8%AE%B0"><span class="toc-number">11.</span> <span class="toc-text">总结：核心要点速记</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/26/cpp-01/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/26/cpp-01/&text=C++八股文01 - 基础语法与类型系统"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/26/cpp-01/&is_video=false&description=C++八股文01 - 基础语法与类型系统"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++八股文01 - 基础语法与类型系统&body=Check out this article: http://example.com/2025/10/26/cpp-01/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/26/cpp-01/&title=C++八股文01 - 基础语法与类型系统"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/26/cpp-01/&name=C++八股文01 - 基础语法与类型系统&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/26/cpp-01/&t=C++八股文01 - 基础语法与类型系统"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Ruihan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Ruihan11">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
