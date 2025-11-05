@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Some places I travelled.         &#x2F;&#x2F; Initialize the map   var map &#x3D; L.map(&#39;map&#39;).setView([39.8283, -98.5795], 4);    &#x2F;&#x2F; Add OpenStreetMap tiles   L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.org&#x2F;{z}&#x2F;{x}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://example.com/about/index.html">
+<meta property="og:site_name" content="Ruihan&#39;s Blog">
+<meta property="og:description" content="Some places I travelled.         &#x2F;&#x2F; Initialize the map   var map &#x3D; L.map(&#39;map&#39;).setView([39.8283, -98.5795], 4);    &#x2F;&#x2F; Add OpenStreetMap tiles   L.tileLayer(&#39;https:&#x2F;&#x2F;{s}.tile.openstreetmap.org&#x2F;{z}&#x2F;{x}">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-05T16:57:40.000Z">
+<meta property="article:modified_time" content="2025-11-05T18:51:40.779Z">
+<meta property="article:author" content="Ruihan">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>about</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Ruihan&#39;s Blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="https://github.com/Ruihan11">Projects</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p>Some places I travelled.</p>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<div id="map" style="height: 500px; width: 100%; margin: 20px 0;"></div>
+
+<script>
+  // Initialize the map
+  var map = L.map('map').setView([39.8283, -98.5795], 4);
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 17
+  }).addTo(map);
+
+  // Add markers
+    L.marker([53.4808, -2.2426]).addTo(map)
+    .bindPopup('Manchester');
+
+    L.marker([37.5135, 122.1217]).addTo(map)
+    .bindPopup('威海市');
+
+    L.marker([22.3193, 114.1694]).addTo(map)
+    .bindPopup('香港');
+
+    L.marker([34.2658, 108.9541]).addTo(map)
+    .bindPopup('西安');
+
+    L.marker([31.2983, 120.5832]).addTo(map)
+    .bindPopup('苏州');
+
+    L.marker([30.2741, 120.1552]).addTo(map)
+    .bindPopup('杭州');
+
+    L.marker([29.59, 101.57]).addTo(map)
+    .bindPopup('川西');
+
+    L.marker([40.7128, -74.0060]).addTo(map)
+    .bindPopup('New York City, NY');
+
+    L.marker([44.3386, -68.2733]).addTo(map)
+    .bindPopup('Acadia National Park, ME');
+
+    L.marker([28.3772, -81.5707]).addTo(map)
+    .bindPopup('Walt Disney World, Orlando, FL');
+
+    L.marker([35.6131, -83.5532]).addTo(map)
+    .bindPopup('Great Smoky Mountains National Park');
+
+    L.marker([32.7767, -96.7970]).addTo(map)
+    .bindPopup('Dallas');
+
+    L.marker([29.5518, -95.0981]).addTo(map)
+    .bindPopup('Space Center Houston');
+
+</script>
+
+
+<h1 id="Some-books-I-read"><a href="#Some-books-I-read" class="headerlink" title="Some books I read"></a>Some books I read</h1><table>
+<thead>
+<tr>
+<th>Author</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fyodor Dostoevsky</td>
+<td><a href="/2025/10/14/books-2025/#%E8%A2%AB%E4%BE%AE%E8%BE%B1%E4%B8%8E%E8%A2%AB%E6%8D%9F%E5%AE%B3%E7%9A%84">被侮辱与被损害的 (Humiliated and Insulted)</a></td>
+</tr>
+<tr>
+<td>Fredrik Backman</td>
+<td><a href="/2025/10/14/books-2025/#%E7%84%A6%E8%99%91%E7%9A%84%E4%BA%BA">焦虑的人 (Anxious People)</a></td>
+</tr>
+<tr>
+<td>Harper Lee</td>
+<td><a href="/2025/10/14/books-2025/#%E6%9D%80%E6%AD%BB%E4%B8%80%E5%8F%AA%E7%9F%A5%E6%9B%B4%E9%B8%9F">杀死一只知更鸟 (To Kill a Mockingbird)</a></td>
+</tr>
+<tr>
+<td>Somerset Maugham</td>
+<td><a href="/2025/10/14/books-2025/#%E6%9C%88%E4%BA%AE%E4%B8%8E%E5%85%AD%E4%BE%BF%E5%A3%AB">月亮与六便士 (The Moon and Sixpence)</a></td>
+</tr>
+<tr>
+<td>Tara Westover</td>
+<td><a href="/2025/10/14/books-2025/#%E4%BD%A0%E5%BD%93%E5%83%8F%E9%B8%9F%E9%A3%9E%E5%BE%80%E4%BD%A0%E7%9A%84%E5%B1%B1">你当像鸟飞往你的山 (Educated)</a></td>
+</tr>
+<tr>
+<td>余华</td>
+<td>许三观卖血记</td>
+</tr>
+<tr>
+<td>余华</td>
+<td>活着</td>
+</tr>
+<tr>
+<td>莫言</td>
+<td>生死疲劳</td>
+</tr>
+<tr>
+<td>莫言</td>
+<td>丰乳肥臀</td>
+</tr>
+<tr>
+<td>莫言</td>
+<td>蛙</td>
+</tr>
+</tbody></table>
+
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2001-2025
+    Ruihan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Ruihan11">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
