@@ -19,23 +19,25 @@
   <meta name="author" content="Ruihan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="概述这三讲涵盖了 C++ 的核心基础：编译时 vs 运行时、类型系统、数据组织、以及输入输出。理解这些概念是写好 C++ 的关键。  第2讲：类型和结构体编译 vs 解释C++ 是编译型语言：  编译时：编译器扫描全部代码，检查错误 运行时：执行已编译的程序   对比 Python（解释型）：  运行时逐行解释和执行 错误在代码执行到那行时才发现    关键差异： C++ 能在你运行代码前就捕捉很">
+    <meta name="description" content="Stanford CS106L C&#x2F;C++ Struct&#x2F;Initialization&#x2F;Stream">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS106L-01">
 <meta property="og:url" content="https://ruihan11.github.io/2025/11/09/CS106L-01/index.html">
 <meta property="og:site_name" content="Ruihan&#39;s Blog">
-<meta property="og:description" content="概述这三讲涵盖了 C++ 的核心基础：编译时 vs 运行时、类型系统、数据组织、以及输入输出。理解这些概念是写好 C++ 的关键。  第2讲：类型和结构体编译 vs 解释C++ 是编译型语言：  编译时：编译器扫描全部代码，检查错误 运行时：执行已编译的程序   对比 Python（解释型）：  运行时逐行解释和执行 错误在代码执行到那行时才发现    关键差异： C++ 能在你运行代码前就捕捉很">
+<meta property="og:description" content="Stanford CS106L C&#x2F;C++ Struct&#x2F;Initialization&#x2F;Stream">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ruihan11.github.io/image-2.png">
-<meta property="og:image" content="https://ruihan11.github.io/image.png">
-<meta property="og:image" content="https://ruihan11.github.io/image-1.png">
-<meta property="og:image" content="https://ruihan11.github.io/image-3.png">
-<meta property="og:image" content="https://ruihan11.github.io/image-4.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-02.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-00.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-01.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-03.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-04.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-05.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-06.png">
 <meta property="article:published_time" content="2025-11-09T17:56:17.000Z">
-<meta property="article:modified_time" content="2025-11-10T16:29:22.022Z">
+<meta property="article:modified_time" content="2025-11-18T00:38:45.851Z">
 <meta property="article:author" content="Ruihan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ruihan11.github.io/image-2.png">
+<meta name="twitter:image" content="https://ruihan11.github.io/images/cs106l-02.png">
   
   
   
@@ -77,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ruihan11.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"ruihan11.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -103,7 +105,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Ruihan</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -123,43 +125,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
+                <span>Home</span>
               </a>
             </li>
           
@@ -171,7 +137,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
+                <span>About</span>
               </a>
             </li>
           
@@ -228,7 +194,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          4k 字
         
       </span>
     
@@ -239,7 +205,7 @@
         
         
         
-          38 分钟
+          34 分钟
         
       </span>
     
@@ -281,20 +247,18 @@
             
               <div class="markdown-body">
                 
-                <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这三讲涵盖了 C++ 的核心基础：编译时 vs 运行时、类型系统、数据组织、以及输入输出。理解这些概念是写好 C++ 的关键。</p>
-<hr>
-<h2 id="第2讲：类型和结构体"><a href="#第2讲：类型和结构体" class="headerlink" title="第2讲：类型和结构体"></a>第2讲：类型和结构体</h2><h3 id="编译-vs-解释"><a href="#编译-vs-解释" class="headerlink" title="编译 vs 解释"></a>编译 vs 解释</h3><p><strong>C++ 是编译型语言：</strong></p>
+                <h2 id="第2讲：类型和结构体"><a href="#第2讲：类型和结构体" class="headerlink" title="第2讲：类型和结构体"></a>第2讲：类型和结构体</h2><h3 id="编译-vs-解释"><a href="#编译-vs-解释" class="headerlink" title="编译 vs 解释"></a>编译 vs 解释</h3><p><strong>C++ 是编译型语言：</strong></p>
 <ul>
 <li>编译时：编译器扫描全部代码，检查错误</li>
 <li>运行时：执行已编译的程序</li>
 </ul>
-<p><img src="/image-2.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/../images/cs106l-02.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>对比 Python（解释型）：</strong></p>
 <ul>
 <li>运行时逐行解释和执行</li>
 <li>错误在代码执行到那行时才发现</li>
 </ul>
-<p><img src="/image.png" srcset="/img/loading.gif" lazyload alt="alt text"> </p>
+<p><img src="/../images/cs106l-00.png" srcset="/img/loading.gif" lazyload> </p>
 <p><strong>关键差异：</strong> C++ 能在你运行代码前就捕捉很多错误！</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ❌ C++ 编译报错（类型不匹配）</span><br>std::string hello = <span class="hljs-string">&quot;Hello &quot;</span>;<br>std::string world = <span class="hljs-string">&quot;World!&quot;</span>;<br>std::cout &lt;&lt; hello * world &lt;&lt; std::endl;  <span class="hljs-comment">// 字符串不能相乘</span><br></code></pre></td></tr></table></figure>
 
@@ -334,11 +298,13 @@
 
 <h3 id="引用：变量的别名"><a href="#引用：变量的别名" class="headerlink" title="引用：变量的别名"></a>引用：变量的别名</h3><p><strong>引用 (<code>&amp;</code>)</strong> 让另一个变量名指向同一块内存。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span>&amp; ref = x;      <span class="hljs-comment">// ref 是 x 的别名</span><br><br>ref = <span class="hljs-number">10</span>;<br>std::cout &lt;&lt; x;    <span class="hljs-comment">// 输出 10（通过 ref 修改了 x）</span><br></code></pre></td></tr></table></figure>
-<p><img src="/image-1.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/../images/cs106l-01.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>按引用传递函数参数：</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">increment</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; n)</span> </span>&#123;<br>    n++;<br>&#125;<br><br><span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">increment</span>(x);<br>std::cout &lt;&lt; x;    <span class="hljs-comment">// 输出 6</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">shift</span><span class="hljs-params">(std::vector&lt;std::pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; &amp;nums)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; [num1, num2] : nums) &#123; <span class="hljs-comment">// 注意这里也需引用</span><br>        num1++;<br>        num2++;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>如果是 pass by value 就不会更改参数数值<br><img src="/image-3.png" srcset="/img/loading.gif" lazyload alt="alt text"><br><img src="/image-4.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>如果是 pass by value 就不会更改参数数值</p>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/../images/cs106l-03.png" srcset="/img/loading.gif" lazyload></div><div class="group-image-wrap"><img src="/../images/cs106l-04.png" srcset="/img/loading.gif" lazyload></div></div></div>
+
 <h3 id="L值-vs-R值"><a href="#L值-vs-R值" class="headerlink" title="L值 vs R值"></a>L值 vs R值</h3><ul>
 <li><strong>L值</strong>：有内存地址的东西（变量）- 通常在 <code>=</code> 左边</li>
 <li><strong>R值</strong>：临时值，没有固定地址 - 通常在 <code>=</code> 右边</li>
@@ -354,19 +320,18 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span>&amp; ref = <span class="hljs-number">5</span>;  <span class="hljs-comment">// ✓ 可以</span><br></code></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="第4讲：流（Streams）-🌊"><a href="#第4讲：流（Streams）-🌊" class="headerlink" title="第4讲：流（Streams） 🌊"></a>第4讲：流（Streams） 🌊</h2><p>流是 C++ 读写数据的统一接口。你已经用过它了！</p>
+<h2 id="第4讲：流（Streams）-🌊"><a href="#第4讲：流（Streams）-🌊" class="headerlink" title="第4讲：流（Streams） 🌊"></a>第4讲：流（Streams） 🌊</h2><p>流是 C++ 读写数据的统一接口。</p>
 <h3 id="流是什么"><a href="#流是什么" class="headerlink" title="流是什么"></a>流是什么</h3><p>流像一个”通道”，在你的程序和外部资源（键盘、屏幕、文件）之间传输数据。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::cout &lt;&lt; <span class="hljs-string">&quot;Hello&quot;</span>;           <span class="hljs-comment">// 输出流（写）</span><br>std::cin &gt;&gt; x;                   <span class="hljs-comment">// 输入流（读）</span><br><span class="hljs-function">std::ifstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">&quot;data.txt&quot;</span>)</span></span>;  <span class="hljs-comment">// 文件输入流</span><br><span class="hljs-function">std::ofstream <span class="hljs-title">out</span><span class="hljs-params">(<span class="hljs-string">&quot;out.txt&quot;</span>)</span></span>;    <span class="hljs-comment">// 文件输出流</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="流的继承关系"><a href="#流的继承关系" class="headerlink" title="流的继承关系"></a>流的继承关系</h3><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gams">    ios_base<br>       ↓<br>    basic_ios<br>     ↙      ↖<br> istream    ostream      (输入/输出流)<br>  ↙  ↖      ↙  ↖<br><span class="hljs-function"><span class="hljs-title">cin</span></span> istringstream  cout ofstream  ifstream ...<br></code></pre></td></tr></table></figure>
-
+<h3 id="流的继承关系"><a href="#流的继承关系" class="headerlink" title="流的继承关系"></a>流的继承关系</h3><p><img src="/../images/cs106l-05.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/cs106l-06.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="字符串流：处理字符串如同文件"><a href="#字符串流：处理字符串如同文件" class="headerlink" title="字符串流：处理字符串如同文件"></a>字符串流：处理字符串如同文件</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::stringstream <span class="hljs-title">ss</span><span class="hljs-params">(<span class="hljs-string">&quot;Bjarne Stroustrup C++ rules&quot;</span>)</span></span>;<br><br>std::string first, last, language;<br>ss &gt;&gt; first &gt;&gt; last &gt;&gt; language;<br><br>std::cout &lt;&lt; first &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; last &lt;&lt; std::endl;  <span class="hljs-comment">// &quot;Bjarne Stroustrup&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>关键点：</strong> <code>&gt;&gt;</code> 在空白处停止</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string quote = <span class="hljs-string">&quot;Hello World&quot;</span>;<br>ss &gt;&gt; quote;  <span class="hljs-comment">// 只读到 &quot;Hello&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>解决方案：使用 <code>getline()</code></strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string wholeLine;<br>std::<span class="hljs-built_in">getline</span>(ss, wholeLine);  <span class="hljs-comment">// 读整行（到换行符）</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string wholeLine;<br>std::<span class="hljs-built_in">getline</span>(ss, wholeLine);  <span class="hljs-comment">// 读整行（到换行符 \n）</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="输出流"><a href="#输出流" class="headerlink" title="输出流"></a>输出流</h3><p><strong><code>std::cout</code>：</strong> 标准输出</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::cout &lt;&lt; <span class="hljs-string">&quot;Hello&quot;</span> &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; <span class="hljs-string">&quot;World&quot;</span> &lt;&lt; std::endl;<br></code></pre></td></tr></table></figure>
@@ -375,8 +340,6 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::cout &lt;&lt; <span class="hljs-string">&quot;buffered&quot;</span>;       <span class="hljs-comment">// 还在缓冲</span><br>std::cout &lt;&lt; std::flush;       <span class="hljs-comment">// 立即输出</span><br>std::cout &lt;&lt; <span class="hljs-string">&quot;line&quot;</span> &lt;&lt; std::endl;  <span class="hljs-comment">// endl = 输出 + 刷新</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>性能提示：</strong> 用 <code>&#39;\n&#39;</code> 比 <code>std::endl</code> 快（不强制刷新）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 更快 ✓</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000</span>; i++) &#123;<br>    std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h3><p><strong>写入文件：</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::ofstream <span class="hljs-title">out</span><span class="hljs-params">(<span class="hljs-string">&quot;data.txt&quot;</span>)</span></span>;<br><span class="hljs-keyword">if</span> (out.<span class="hljs-built_in">is_open</span>()) &#123;<br>    out &lt;&lt; <span class="hljs-string">&quot;Hello CS106L!&quot;</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    out.<span class="hljs-built_in">close</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -389,58 +352,6 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> age;<br>std::string name;<br><br>std::cin &gt;&gt; age;  <span class="hljs-comment">// 从输入缓冲读，留下 \n</span><br>std::<span class="hljs-built_in">getline</span>(std::cin, name);  <span class="hljs-comment">// 立即读到那个 \n！得到空字符串</span><br><br><span class="hljs-comment">// 解决方案：</span><br>std::cin &gt;&gt; age;<br>std::<span class="hljs-built_in">getline</span>(std::cin, name);  <span class="hljs-comment">// 消耗剩余的 \n</span><br>std::<span class="hljs-built_in">getline</span>(std::cin, name);  <span class="hljs-comment">// 现在读真正的数据</span><br></code></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>要点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>编译 vs 运行</strong></td>
-<td>C++ 编译时捕捉类型错误，更安全高效</td>
-</tr>
-<tr>
-<td><strong>静态类型</strong></td>
-<td>变量类型在声明时确定，之后不能改变</td>
-</tr>
-<tr>
-<td><strong>结构体</strong></td>
-<td>打包相关数据的方式</td>
-</tr>
-<tr>
-<td><strong>统一初始化</strong></td>
-<td>使用 <code>{}</code> 初始化，防止精度丢失</td>
-</tr>
-<tr>
-<td><strong>引用</strong></td>
-<td>变量的别名，用 <code>&amp;</code> 标记</td>
-</tr>
-<tr>
-<td><strong>L&#x2F;R值</strong></td>
-<td>L值有地址，R值是临时的</td>
-</tr>
-<tr>
-<td><strong>const</strong></td>
-<td>防止修改变量或通过引用修改</td>
-</tr>
-<tr>
-<td><strong>流</strong></td>
-<td>统一的输入输出接口</td>
-</tr>
-<tr>
-<td><strong>缓冲</strong></td>
-<td>输出流先缓存，遇到 flush&#x2F;endl 才输出</td>
-</tr>
-</tbody></table>
-<hr>
-<p><strong>核心建议：</strong></p>
-<ul>
-<li>🎯 用统一初始化 <code>{}</code></li>
-<li>🎯 用引用传递大对象（避免复制）</li>
-<li>🎯 理解缓冲机制优化 I&#x2F;O 性能</li>
-<li>🎯 混用 <code>std::cin &gt;&gt;</code> 和 <code>getline()</code> 要小心！</li>
-</ul>
 
                 
               </div>
@@ -503,12 +414,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/11/17/CS106L-02/" title="CS106L-02">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CS106L-02</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/05/jp-travel/" title="Japan Trip 2025-2026">
-                        <span class="hidden-mobile">Japan Trip 2025-2026</span>
+                      <a href="/2025/10/28/roadmap/" title="roadmap">
+                        <span class="hidden-mobile">roadmap</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
