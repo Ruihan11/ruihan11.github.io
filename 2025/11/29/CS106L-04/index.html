@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ruihan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Stanford CS106L C++ 高阶函数、Lambda 表达式与运算符重载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS106L-04">
+<meta property="og:url" content="https://ruihan11.github.io/2025/11/29/CS106L-04/index.html">
+<meta property="og:site_name" content="Ruihan&#39;s Blog">
+<meta property="og:description" content="Stanford CS106L C++ 高阶函数、Lambda 表达式与运算符重载">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-29T21:19:00.000Z">
+<meta property="article:modified_time" content="2025-11-30T19:27:17.370Z">
+<meta property="article:author" content="Ruihan">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>CS106L-04 - Ruihan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ruihan11.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ruihan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Catagory</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CS106L-04"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-29 16:19" pubdate>
+          2025年11月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          82 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CS106L-04</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="第11讲：函数对象与-Lambda-表达式-🧩"><a href="#第11讲：函数对象与-Lambda-表达式-🧩" class="headerlink" title="第11讲：函数对象与 Lambda 表达式 🧩"></a>第11讲：函数对象与 Lambda 表达式 🧩</h2><h3 id="函数指针-vs-函数对象（Functor）"><a href="#函数指针-vs-函数对象（Functor）" class="headerlink" title="函数指针 vs 函数对象（Functor）"></a>函数指针 vs 函数对象（Functor）</h3><p>C++ 支持将<strong>行为作为值传递</strong>，这是泛型算法的基石：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ❌ 函数指针：类型脆弱、无法捕获状态</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123; <span class="hljs-keyword">return</span> a &lt; b; &#125;<br>std::<span class="hljs-built_in">sort</span>(vec.<span class="hljs-built_in">begin</span>(), vec.<span class="hljs-built_in">end</span>(), cmp);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ✅ 函数对象（Functor）：可携带状态、内联友好</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Ascending</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> a &lt; b; &#125;<br>&#125;;<br>std::<span class="hljs-built_in">sort</span>(vec.<span class="hljs-built_in">begin</span>(), vec.<span class="hljs-built_in">end</span>(), Ascending&#123;&#125;);<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 <strong>Functor 的本质</strong>：重载了 <code>operator()</code> 的类实例，行为像函数，但可保存状态（如阈值、比较策略等）。</p>
+</blockquote>
+<hr>
+<h3 id="Lambda-表达式：匿名函数的现代写法-🪄"><a href="#Lambda-表达式：匿名函数的现代写法-🪄" class="headerlink" title="Lambda 表达式：匿名函数的现代写法 🪄"></a>Lambda 表达式：匿名函数的现代写法 🪄</h3><p>Lambda 是编译器自动生成的<strong>匿名 functor</strong>，语法简洁强大：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 基础：无捕获</span><br><span class="hljs-keyword">auto</span> square = [](<span class="hljs-type">int</span> x) &#123; <span class="hljs-keyword">return</span> x * x; &#125;;<br>std::cout &lt;&lt; <span class="hljs-built_in">square</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// 25</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="捕获机制（Capture）"><a href="#捕获机制（Capture）" class="headerlink" title="捕获机制（Capture）"></a>捕获机制（Capture）</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>含义</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[]</code></td>
+<td>无捕获</td>
+<td>✅ 最安全</td>
+</tr>
+<tr>
+<td><code>[=]</code></td>
+<td>值捕获所有</td>
+<td>⚠️ C++20起弃用隐式捕获<code>this</code></td>
+</tr>
+<tr>
+<td><code>[&amp;]</code></td>
+<td>引用捕获所有</td>
+<td>⚠️ 悬空引用风险！</td>
+</tr>
+<tr>
+<td><code>[x]</code></td>
+<td>值捕获 <code>x</code></td>
+<td>✅ 推荐细粒度控制</td>
+</tr>
+<tr>
+<td><code>[&amp;x]</code></td>
+<td>引用捕获 <code>x</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[x = expr]</code></td>
+<td>初始化捕获(C++14)</td>
+<td>✅ 移动语义、重命名</td>
+</tr>
+<tr>
+<td><code>[this]</code></td>
+<td>捕获<code>this</code>指针</td>
+<td>⚠️ 悬空风险</td>
+</tr>
+<tr>
+<td><code>[*this]</code></td>
+<td>值捕获<code>*this</code>(C++17)</td>
+<td>✅ 安全访问成员</td>
+</tr>
+<tr>
+<td><code>[=, this]</code></td>
+<td>C++20显式捕获</td>
+<td>✅ 替代旧式<code>[=]</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> threshold = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">auto</span> filter = [threshold](<span class="hljs-type">int</span> x) &#123;  <span class="hljs-comment">// ✅ 值捕获</span><br>    <span class="hljs-keyword">return</span> x &gt; threshold;<br>&#125;;<br><br><span class="hljs-comment">// ⚠️ 错误示范：引用捕获局部变量 → 悬空！</span><br><span class="hljs-keyword">auto</span> bad = [&amp;threshold](<span class="hljs-type">int</span> x) &#123; <span class="hljs-keyword">return</span> x &gt; threshold; &#125;;<br><span class="hljs-comment">// ... threshold 出作用域后，bad 成为定时炸弹</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="C-14-17-高级捕获"><a href="#C-14-17-高级捕获" class="headerlink" title="C++14&#x2F;17 高级捕获"></a>C++14&#x2F;17 高级捕获</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// C++14 初始化捕获 - 移动unique_ptr</span><br><span class="hljs-keyword">auto</span> ptr = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">42</span>);<br><span class="hljs-keyword">auto</span> lambda = [p = std::<span class="hljs-built_in">move</span>(ptr)]() &#123;<br>    std::cout &lt;&lt; *p; <span class="hljs-comment">// 42</span><br>&#125;;<br><br><span class="hljs-comment">// C++17 值捕获*this - 避免悬空</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">S</span> &#123;<br>    <span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">getLambda</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> [*<span class="hljs-keyword">this</span>]() &#123; <span class="hljs-keyword">return</span> x; &#125;; <span class="hljs-comment">// ✅ 复制整个对象</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="泛型-Lambda（C-14-）"><a href="#泛型-Lambda（C-14-）" class="headerlink" title="泛型 Lambda（C++14+）"></a>泛型 Lambda（C++14+）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">auto</span> printer = [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; x) &#123;<br>    std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;;<br><span class="hljs-built_in">printer</span>(<span class="hljs-number">42</span>);         <span class="hljs-comment">// ✅ int</span><br><span class="hljs-built_in">printer</span>(<span class="hljs-string">&quot;hello&quot;</span>);    <span class="hljs-comment">// ✅ const char*</span><br><span class="hljs-built_in">printer</span>(<span class="hljs-number">3.14</span>);       <span class="hljs-comment">// ✅ double</span><br><br><span class="hljs-comment">// ⚠️ 注意：类型必须支持 operator</span><br><span class="hljs-comment">// printer(std::vector&#123;1,2,3&#125;); // ❌ 编译错误：vector没有&lt;&lt;运算符</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🔍 <strong>原理</strong>：编译器生成模板 <code>operator()</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-comment">/*anonymous*/</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; x)</span> <span class="hljs-type">const</span> </span>&#123; <br>        std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></blockquote>
+<h4 id="Lambda-高级技巧"><a href="#Lambda-高级技巧" class="headerlink" title="Lambda 高级技巧"></a>Lambda 高级技巧</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 1. mutable Lambda - 修改捕获的值副本</span><br><span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">auto</span> counter = [count]() <span class="hljs-keyword">mutable</span> &#123;<br>    <span class="hljs-keyword">return</span> ++count; <span class="hljs-comment">// ✅ 修改副本</span><br>&#125;;<br><span class="hljs-built_in">counter</span>(); <span class="hljs-comment">// 1</span><br><span class="hljs-built_in">counter</span>(); <span class="hljs-comment">// 2</span><br><span class="hljs-comment">// count 仍为 0（外部未变）</span><br><br><span class="hljs-comment">// 2. 立即调用 Lambda 表达式（IIFE）</span><br><span class="hljs-type">int</span> result = [&amp;]() &#123;<br>    <span class="hljs-comment">// 复杂初始化逻辑</span><br>    <span class="hljs-keyword">if</span> (condition) <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-built_in">compute</span>();<br>&#125;();<br><br><span class="hljs-comment">// 3. 递归 Lambda (C++14+)</span><br><span class="hljs-keyword">auto</span> fib = [](<span class="hljs-type">int</span> n) &#123;<br>    <span class="hljs-keyword">auto</span> impl = [](<span class="hljs-type">int</span> n, <span class="hljs-keyword">auto</span>&amp; self) -&gt; <span class="hljs-type">int</span> &#123;<br>        <span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">2</span> ? n : <span class="hljs-built_in">self</span>(n<span class="hljs-number">-1</span>, self) + <span class="hljs-built_in">self</span>(n<span class="hljs-number">-2</span>, self);<br>    &#125;;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">impl</span>(n, impl);<br>&#125;;<br>std::cout &lt;&lt; <span class="hljs-built_in">fib</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// 55</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="std-function：统一的可调用包装器-📦"><a href="#std-function：统一的可调用包装器-📦" class="headerlink" title="std::function：统一的可调用包装器 📦"></a><code>std::function</code>：统一的可调用包装器 📦</h3><p>当需要<strong>类型擦除</strong>（type erasure）——即把不同可调用对象统一为同一类型时：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;functional&gt;</span></span><br><br>std::function&lt;<span class="hljs-type">int</span>(<span class="hljs-type">int</span>)&gt; f;<br><br>f = [](<span class="hljs-type">int</span> x) &#123; <span class="hljs-keyword">return</span> x * <span class="hljs-number">2</span>; &#125;;   <span class="hljs-comment">// Lambda</span><br>f = &amp;square;                       <span class="hljs-comment">// 函数指针</span><br>f = std::<span class="hljs-built_in">bind</span>(std::plus&#123;&#125;, <span class="hljs-number">10</span>, std::placeholders::_1); <span class="hljs-comment">// bind</span><br><br>std::cout &lt;&lt; <span class="hljs-built_in">f</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// 10, 25, 15</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ✅ 直接 Lambda/模板：零开销（内联）</span><br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> F&gt;</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">process</span><span class="hljs-params">(F&amp;&amp; func)</span> </span>&#123; <span class="hljs-built_in">func</span>(); &#125; <span class="hljs-comment">// 编译期优化</span><br><br><span class="hljs-comment">// ⚠️ std::function：运行时开销（~20-30ns）</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">process</span><span class="hljs-params">(std::function&lt;<span class="hljs-type">void</span>()&gt; func)</span> </span>&#123; <span class="hljs-built_in">func</span>(); &#125; <span class="hljs-comment">// 虚表查找</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>✅ 需要存储异构可调用对象（容器&#x2F;类成员）</li>
+<li>✅ 运行时动态切换函数</li>
+<li>✅ ABI 稳定接口（不暴露模板）</li>
+<li>❌ 高频路径&#x2F;性能关键代码（用模板）</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>性能代价</strong>：<code>std::function</code> 通常有虚表调用开销 + 小对象优化（SSO）边界（≈16–32字节）。</p>
+</blockquote>
+<hr>
+<h2 id="第12讲：运算符重载-➕➖×÷"><a href="#第12讲：运算符重载-➕➖×÷" class="headerlink" title="第12讲：运算符重载 ➕➖×÷"></a>第12讲：运算符重载 ➕➖×÷</h2><h3 id="为什么需要运算符重载？"><a href="#为什么需要运算符重载？" class="headerlink" title="为什么需要运算符重载？"></a>为什么需要运算符重载？</h3><blockquote>
+<p><strong>“运算符能让类型行为像内置类型一样自然。”</strong><br>——Bjarne Stroustrup</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">StanfordID a&#123;<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;alice&quot;</span>, <span class="hljs-number">123</span>&#125;;<br>StanfordID b&#123;<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;bob&quot;</span>, <span class="hljs-number">456</span>&#125;;<br><br><span class="hljs-comment">// ❌ 不直观</span><br><span class="hljs-keyword">if</span> (a.<span class="hljs-built_in">lessThan</span>(b)) &#123; ... &#125;<br><br><span class="hljs-comment">// ✅ 直觉：ID 是有序的，`&lt;` 就该有意义</span><br><span class="hljs-keyword">if</span> (a &lt; b) &#123; ... &#125;<br><br><span class="hljs-keyword">auto</span> m = std::<span class="hljs-built_in">min</span>(a, b); <span class="hljs-comment">// ✨ 现在可以用了！</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="重载方式：成员-vs-非成员"><a href="#重载方式：成员-vs-非成员" class="headerlink" title="重载方式：成员 vs 非成员"></a>重载方式：成员 vs 非成员</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>语法</th>
+<th>适用场景</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>成员函数</strong></td>
+<td><code>bool operator&lt;(const T&amp; rhs) const;</code></td>
+<td>修改左侧对象（如 <code>+=</code>, <code>=</code>）</td>
+<td>❌ 左操作数必须是类类型</td>
+</tr>
+<tr>
+<td><strong>非成员函数</strong></td>
+<td><code>bool operator&lt;(const T&amp; lhs, const T&amp; rhs);</code></td>
+<td>对称操作（<code>+</code>, <code>&lt;</code>, <code>==</code>）</td>
+<td>❌ 无法访问私有成员（除非 <code>friend</code>）</td>
+</tr>
+</tbody></table>
+<p>✅ <strong>STL 推荐</strong>：优先使用<strong>非成员重载</strong>（更泛化、支持隐式转换）。</p>
+<h4 id="示例：StanfordID-的"><a href="#示例：StanfordID-的" class="headerlink" title="示例：StanfordID 的 &lt; 重载"></a>示例：<code>StanfordID</code> 的 <code>&lt;</code> 重载</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// StanfordID.h</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StanfordID</span> &#123;<br>    std::string name, sunet;<br>    <span class="hljs-type">int</span> idNumber;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">StanfordID</span>(std::string n, std::string s, <span class="hljs-type">int</span> id);<br><br>    <span class="hljs-comment">// 1️⃣ 成员重载（仅当 lhs 是 StanfordID）</span><br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> StanfordID&amp; rhs) <span class="hljs-type">const</span>;<br><br>    <span class="hljs-comment">// 2️⃣ 非成员重载（需 friend 访问私有）</span><br>    <span class="hljs-keyword">friend</span> <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> StanfordID&amp; lhs, <span class="hljs-type">const</span> StanfordID&amp; rhs);<br>&#125;;<br><br><span class="hljs-comment">// StanfordID.cpp</span><br><span class="hljs-comment">// 成员版本</span><br><span class="hljs-type">bool</span> StanfordID::<span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> StanfordID&amp; rhs) <span class="hljs-type">const</span> &#123;<br>    <span class="hljs-keyword">return</span> idNumber &lt; rhs.idNumber;  <span class="hljs-comment">// ✅ 直接访问 rhs.idNumber（同类型）</span><br>&#125;<br><br><span class="hljs-comment">// 非成员版本（更灵活）</span><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> StanfordID&amp; lhs, <span class="hljs-type">const</span> StanfordID&amp; rhs) &#123;<br>    <span class="hljs-keyword">return</span> lhs.idNumber &lt; rhs.idNumber;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🎯 <strong>最佳实践</strong>：  </p>
+<ul>
+<li>对称操作（<code>==</code>, <code>&lt;</code>, <code>+</code>）→ <strong>非成员 + <code>friend</code></strong>  </li>
+<li>修改左侧（<code>+=</code>, <code>=</code>）→ <strong>成员函数</strong>  </li>
+<li>流操作（<code>&lt;&lt;</code>, <code>&gt;&gt;</code>）→ <strong>必须非成员</strong>（<code>ostream</code> 不是你写的类！）</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="必须重载的”配套”运算符"><a href="#必须重载的”配套”运算符" class="headerlink" title="必须重载的”配套”运算符"></a>必须重载的”配套”运算符</h3><h4 id="Rule-of-Contrariety（反演律）"><a href="#Rule-of-Contrariety（反演律）" class="headerlink" title="Rule of Contrariety（反演律）"></a>Rule of Contrariety（反演律）</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ✅ 自动推导 != 来自 ==</span><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-type">const</span> StanfordID&amp; lhs, <span class="hljs-type">const</span> StanfordID&amp; rhs) &#123;<br>    <span class="hljs-keyword">return</span> lhs.name == rhs.name &amp;&amp;<br>           lhs.sunet == rhs.sunet &amp;&amp;<br>           lhs.idNumber == rhs.idNumber;<br>&#125;<br><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>!=(<span class="hljs-type">const</span> StanfordID&amp; lhs, <span class="hljs-type">const</span> StanfordID&amp; rhs) &#123;<br>    <span class="hljs-keyword">return</span> !(lhs == rhs);  <span class="hljs-comment">// ✅ 一行搞定，永不矛盾</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="C-20-Spaceship-Operator"><a href="#C-20-Spaceship-Operator" class="headerlink" title="C++20 Spaceship Operator &lt;=&gt;"></a>C++20 Spaceship Operator <code>&lt;=&gt;</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ✅ 一个运算符自动生成 6 个比较</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;compare&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StanfordID</span> &#123;<br>    std::string name, sunet;<br>    <span class="hljs-type">int</span> idNumber;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 自动生成: ==, !=, &lt;, &lt;=, &gt;, &gt;=</span><br>    <span class="hljs-keyword">auto</span> <span class="hljs-built_in">operator</span>&lt;=&gt;(<span class="hljs-type">const</span> StanfordID&amp;) <span class="hljs-type">const</span> = <span class="hljs-keyword">default</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="流插入-提取："><a href="#流插入-提取：" class="headerlink" title="流插入&#x2F;提取：&lt;&lt; &#x2F; &gt;&gt;"></a>流插入&#x2F;提取：<code>&lt;&lt;</code> &#x2F; <code>&gt;&gt;</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 输出</span><br>std::ostream&amp; <span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="hljs-type">const</span> StanfordID&amp; sid) &#123;<br>    <span class="hljs-keyword">return</span> os &lt;&lt; <span class="hljs-string">&quot;Name: &quot;</span> &lt;&lt; sid.name<br>              &lt;&lt; <span class="hljs-string">&quot;, SUNet: &quot;</span> &lt;&lt; sid.sunet<br>              &lt;&lt; <span class="hljs-string">&quot;, ID: &quot;</span> &lt;&lt; sid.idNumber;<br>&#125;<br><br><span class="hljs-comment">// 输入</span><br>std::istream&amp; <span class="hljs-keyword">operator</span>&gt;&gt;(std::istream&amp; is, StanfordID&amp; sid) &#123;<br>    std::string name, sunet;<br>    <span class="hljs-type">int</span> id;<br>    <br>    <span class="hljs-comment">// 格式: Alice alice 123</span><br>    <span class="hljs-keyword">if</span> (is &gt;&gt; name &gt;&gt; sunet &gt;&gt; id) &#123;<br>        sid = StanfordID&#123;name, sunet, id&#125;;<br>    &#125;<br>    <span class="hljs-keyword">return</span> is; <span class="hljs-comment">// ✅ 支持链式调用和错误检查</span><br>&#125;<br><br><span class="hljs-comment">// 使用</span><br>std::cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>; <br><span class="hljs-comment">// → Name: Alice, SUNet: alice, ID: 123</span><br><br>StanfordID s;<br>std::cin &gt;&gt; s;<br><span class="hljs-keyword">if</span> (std::cin) &#123; <span class="hljs-comment">/* 读取成功 */</span> &#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🔑 <strong>注意</strong>：  </p>
+<ul>
+<li>返回 <code>ostream&amp;</code> &#x2F; <code>istream&amp;</code> 以支持链式调用（<code>cout &lt;&lt; a &lt;&lt; b</code>）  </li>
+<li>参数为 <code>const &amp;</code> 避免拷贝（输出）&#x2F; 非const引用（输入）  </li>
+<li><strong>永不</strong>在 <code>&lt;&lt;</code> 中输出 <code>endl</code>（破坏缓冲控制权）</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="The-Rule-of-Three-Five-Zero"><a href="#The-Rule-of-Three-Five-Zero" class="headerlink" title="The Rule of Three&#x2F;Five&#x2F;Zero"></a>The Rule of Three&#x2F;Five&#x2F;Zero</h3><p>⚠️ <strong>如果重载了赋值运算符，必须考虑资源管理</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// Rule of Five (C++11)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Resource</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Resource</span>(<span class="hljs-type">const</span> Resource&amp;);              <span class="hljs-comment">// 拷贝构造</span><br>    Resource&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Resource&amp;);   <span class="hljs-comment">// 拷贝赋值 ⬅️ 重载</span><br>    <span class="hljs-built_in">Resource</span>(Resource&amp;&amp;) <span class="hljs-keyword">noexcept</span>;          <span class="hljs-comment">// 移动构造</span><br>    Resource&amp; <span class="hljs-keyword">operator</span>=(Resource&amp;&amp;) <span class="hljs-keyword">noexcept</span>; <span class="hljs-comment">// 移动赋值 ⬅️ 重载</span><br>    ~<span class="hljs-built_in">Resource</span>();                            <span class="hljs-comment">// 析构函数</span><br>&#125;;<br><br><span class="hljs-comment">// ✅ 或遵循 Rule of Zero: 不手动管理资源</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Modern</span> &#123;<br>    std::unique_ptr&lt;<span class="hljs-type">int</span>&gt; data; <span class="hljs-comment">// 自动管理</span><br>    <span class="hljs-comment">// 编译器生成所有特殊成员函数</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="运算符重载常见陷阱-⚠️"><a href="#运算符重载常见陷阱-⚠️" class="headerlink" title="运算符重载常见陷阱 ⚠️"></a>运算符重载常见陷阱 ⚠️</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ❌ 错误1: 返回局部引用</span><br><span class="hljs-type">const</span> T&amp; <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> T&amp; other) <span class="hljs-type">const</span> &#123;<br>    T result = *<span class="hljs-keyword">this</span>; <span class="hljs-comment">// 局部变量</span><br>    result += other;<br>    <span class="hljs-keyword">return</span> result; <span class="hljs-comment">// 💣 悬空引用!</span><br>&#125;<br><br><span class="hljs-comment">// ✅ 正确: 返回值（RVO/NRVO优化）</span><br>T <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> T&amp; other) <span class="hljs-type">const</span> &#123;<br>    T result = *<span class="hljs-keyword">this</span>;<br>    result += other;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-comment">// ❌ 错误2: 破坏对称性</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Money</span> &#123;<br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-type">int</span> amount) <span class="hljs-type">const</span>; <span class="hljs-comment">// 仅支持 m == 42</span><br>&#125;;<br>Money m&#123;<span class="hljs-number">100</span>&#125;;<br>m == <span class="hljs-number">42</span>;  <span class="hljs-comment">// ✅</span><br><span class="hljs-number">42</span> == m;  <span class="hljs-comment">// ❌ 编译错误!</span><br><br><span class="hljs-comment">// ✅ 解决: 非成员重载</span><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-type">const</span> Money&amp; m, <span class="hljs-type">int</span> amount);<br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-type">int</span> amount, <span class="hljs-type">const</span> Money&amp; m);<br><br><span class="hljs-comment">// ✅ C++20: spaceship 自动对称</span><br><span class="hljs-keyword">auto</span> <span class="hljs-built_in">operator</span>&lt;=&gt;(<span class="hljs-type">const</span> Money&amp;) <span class="hljs-type">const</span> = <span class="hljs-keyword">default</span>;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="重载哲学：Principle-of-Least-Astonishment-PoLA"><a href="#重载哲学：Principle-of-Least-Astonishment-PoLA" class="headerlink" title="重载哲学：Principle of Least Astonishment (PoLA)"></a>重载哲学：Principle of Least Astonishment (PoLA)</h3><blockquote>
+<p><strong>“不要让 <code>+</code> 做集合差，不要让 <code>*</code> 表示字符串拼接。”</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>推荐语义</th>
+<th>禁忌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>+</code>, <code>-</code></td>
+<td>数学加减、集合并&#x2F;差</td>
+<td>字符串拼接（用 <code>+=</code> 可接受）</td>
+</tr>
+<tr>
+<td><code>&lt;</code>, <code>&gt;</code></td>
+<td>严格弱序（strict weak ordering）</td>
+<td>字典序以外的任意顺序（除非明确文档说明）</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>逐成员相等</td>
+<td>引用相等（用 <code>std::addressof</code> 比较指针）</td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>函数调用</td>
+<td>任意副作用密集操作</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ❌ 反人类：a + b 居然是 b - a？！</span><br>Money <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> Money&amp; a, <span class="hljs-type">const</span> Money&amp; b) &#123;<br>    <span class="hljs-keyword">return</span> b - a;  <span class="hljs-comment">// 🤯</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="高阶技巧：Lambda-Operator-Overloading-实战"><a href="#高阶技巧：Lambda-Operator-Overloading-实战" class="headerlink" title="高阶技巧：Lambda + Operator Overloading 实战"></a>高阶技巧：Lambda + Operator Overloading 实战</h2><h3 id="场景：自定义排序谓词"><a href="#场景：自定义排序谓词" class="headerlink" title="场景：自定义排序谓词"></a>场景：自定义排序谓词</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;StanfordID&gt; students = &#123; <span class="hljs-comment">/*...*/</span> &#125;;<br><br><span class="hljs-comment">// 方案1：临时 lambda（最常用）</span><br>std::<span class="hljs-built_in">sort</span>(students.<span class="hljs-built_in">begin</span>(), students.<span class="hljs-built_in">end</span>(),<br>    [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; a, <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; b) &#123;<br>        <span class="hljs-keyword">return</span> a.name &lt; b.name;  <span class="hljs-comment">// 按姓名排序</span><br>    &#125;);<br><br><span class="hljs-comment">// 方案2：可复用 functor</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">BySunet</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">const</span> StanfordID&amp; a, <span class="hljs-type">const</span> StanfordID&amp; b)</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a.sunet &lt; b.sunet;<br>    &#125;<br>&#125;;<br>std::<span class="hljs-built_in">sort</span>(students.<span class="hljs-built_in">begin</span>(), students.<span class="hljs-built_in">end</span>(), BySunet&#123;&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="场景：带状态的比较器"><a href="#场景：带状态的比较器" class="headerlink" title="场景：带状态的比较器"></a>场景：带状态的比较器</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string prefix = <span class="hljs-string">&quot;cs&quot;</span>;<br><span class="hljs-keyword">auto</span> startsWith = [&amp;prefix](<span class="hljs-type">const</span> StanfordID&amp; id) &#123;<br>    <span class="hljs-keyword">return</span> id.sunet.<span class="hljs-built_in">starts_with</span>(prefix);<br>&#125;;<br><br>std::vector&lt;StanfordID&gt; cs_studs;<br>std::<span class="hljs-built_in">copy_if</span>(students.<span class="hljs-built_in">begin</span>(), students.<span class="hljs-built_in">end</span>(),<br>             std::<span class="hljs-built_in">back_inserter</span>(cs_studs), startsWith);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结与最佳实践"><a href="#总结与最佳实践" class="headerlink" title="总结与最佳实践"></a>总结与最佳实践</h2><h3 id="功能对比表"><a href="#功能对比表" class="headerlink" title="功能对比表"></a>功能对比表</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>核心要点</th>
+<th>性能考量</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>函数指针</strong></td>
+<td>传统、无状态</td>
+<td>阻止内联</td>
+<td>简单回调、C 兼容</td>
+</tr>
+<tr>
+<td><strong>Functor</strong></td>
+<td>有状态、类型安全</td>
+<td>可内联优化</td>
+<td>复杂逻辑、需要状态</td>
+</tr>
+<tr>
+<td><strong>Lambda</strong></td>
+<td>匿名 Functor 语法糖</td>
+<td>同 Functor</td>
+<td>一次性使用、简洁</td>
+</tr>
+<tr>
+<td><strong>泛型 Lambda</strong></td>
+<td><code>auto</code> 参数&#x3D;模板</td>
+<td>编译期多态</td>
+<td>通用算法</td>
+</tr>
+<tr>
+<td><strong><code>std::function</code></strong></td>
+<td>类型擦除、运行时多态</td>
+<td>虚表开销(~20ns)</td>
+<td>存储&#x2F;容器、动态绑定</td>
+</tr>
+<tr>
+<td><strong>成员重载</strong></td>
+<td>修改左侧</td>
+<td>-</td>
+<td><code>+=</code>, <code>=</code>, <code>[]</code></td>
+</tr>
+<tr>
+<td><strong>非成员重载</strong></td>
+<td>对称性、泛化</td>
+<td>同成员</td>
+<td><code>+</code>, <code>==</code>, <code>&lt;</code>, <code>&lt;&lt;</code></td>
+</tr>
+<tr>
+<td><strong>Spaceship <code>&lt;=&gt;</code></strong></td>
+<td>自动生成 6 个比较(C++20)</td>
+<td>零开销</td>
+<td>所有可比较类型</td>
+</tr>
+</tbody></table>
+<h3 id="实践指南"><a href="#实践指南" class="headerlink" title="实践指南"></a>实践指南</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一次性简单函数</td>
+<td>✅ Lambda（值捕获优先）</td>
+</tr>
+<tr>
+<td>多次复用&#x2F;复杂逻辑</td>
+<td>✅ 命名 Functor</td>
+</tr>
+<tr>
+<td>泛型回调接口</td>
+<td>✅ 模板参数（<code>template&lt;typename F&gt;</code>）或 <code>std::function</code>（需类型擦除时）</td>
+</tr>
+<tr>
+<td>对称运算（<code>==</code>, <code>&lt;</code>）</td>
+<td>✅ 非成员重载 + <code>friend</code></td>
+</tr>
+<tr>
+<td>修改左侧运算（<code>+=</code>）</td>
+<td>✅ 成员重载</td>
+</tr>
+<tr>
+<td>流操作（<code>&lt;&lt;</code>）</td>
+<td>✅ 非成员重载（参数 <code>ostream&amp;</code>, <code>const T&amp;</code>）</td>
+</tr>
+<tr>
+<td>避免歧义</td>
+<td>✅ 不要同时定义成员与非成员同名运算符</td>
+</tr>
+<tr>
+<td>C++20 新项目</td>
+<td>✅ 优先使用 <code>&lt;=&gt;</code> 自动生成比较运算符</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🧠 <strong>金句</strong>：<br><strong>“运算符重载不是炫技，而是让类型行为符合直觉；Lambda 不是语法糖，而是将行为一等公民化的桥梁。”</strong></p>
+</blockquote>
+<hr>
+<h2 id="附录：完整示例代码"><a href="#附录：完整示例代码" class="headerlink" title="附录：完整示例代码"></a>附录：完整示例代码</h2><h3 id="Lambda-综合示例"><a href="#Lambda-综合示例" class="headerlink" title="Lambda 综合示例"></a>Lambda 综合示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    std::vector&lt;<span class="hljs-type">int</span>&gt; nums = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;;<br>    <br>    <span class="hljs-comment">// 值捕获</span><br>    <span class="hljs-type">int</span> factor = <span class="hljs-number">10</span>;<br>    std::<span class="hljs-built_in">transform</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), nums.<span class="hljs-built_in">begin</span>(),<br>        [factor](<span class="hljs-type">int</span> x) &#123; <span class="hljs-keyword">return</span> x * factor; &#125;);<br>    <br>    <span class="hljs-comment">// 泛型 Lambda</span><br>    <span class="hljs-keyword">auto</span> print = [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; x) &#123; std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span>; &#125;;<br>    std::for_each(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), print);<br>    <br>    <span class="hljs-comment">// mutable Lambda</span><br>    <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">auto</span> accumulate = [sum](<span class="hljs-type">int</span> x) <span class="hljs-keyword">mutable</span> &#123; <span class="hljs-keyword">return</span> sum += x; &#125;;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;\nLast: &quot;</span> &lt;&lt; <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">back</span>()); <span class="hljs-comment">// 仅最后一个元素</span><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="运算符重载完整类"><a href="#运算符重载完整类" class="headerlink" title="运算符重载完整类"></a>运算符重载完整类</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;compare&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StanfordID</span> &#123;<br>    std::string name, sunet;<br>    <span class="hljs-type">int</span> idNumber;<br>    <br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">StanfordID</span>(std::string n, std::string s, <span class="hljs-type">int</span> id)<br>        : <span class="hljs-built_in">name</span>(std::<span class="hljs-built_in">move</span>(n)), <span class="hljs-built_in">sunet</span>(std::<span class="hljs-built_in">move</span>(s)), <span class="hljs-built_in">idNumber</span>(id) &#123;&#125;<br>    <br>    <span class="hljs-comment">// C++20 自动生成所有比较</span><br>    <span class="hljs-keyword">auto</span> <span class="hljs-built_in">operator</span>&lt;=&gt;(<span class="hljs-type">const</span> StanfordID&amp;) <span class="hljs-type">const</span> = <span class="hljs-keyword">default</span>;<br>    <br>    <span class="hljs-comment">// 流输出</span><br>    <span class="hljs-keyword">friend</span> std::ostream&amp; <span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="hljs-type">const</span> StanfordID&amp; sid) &#123;<br>        <span class="hljs-keyword">return</span> os &lt;&lt; <span class="hljs-string">&quot;Name: &quot;</span> &lt;&lt; sid.name <br>                  &lt;&lt; <span class="hljs-string">&quot;, SUNet: &quot;</span> &lt;&lt; sid.sunet <br>                  &lt;&lt; <span class="hljs-string">&quot;, ID: &quot;</span> &lt;&lt; sid.idNumber;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 流输入</span><br>    <span class="hljs-keyword">friend</span> std::istream&amp; <span class="hljs-keyword">operator</span>&gt;&gt;(std::istream&amp; is, StanfordID&amp; sid) &#123;<br>        <span class="hljs-keyword">return</span> is &gt;&gt; sid.name &gt;&gt; sid.sunet &gt;&gt; sid.idNumber;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    StanfordID a&#123;<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;alice&quot;</span>, <span class="hljs-number">123</span>&#125;;<br>    StanfordID b&#123;<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;bob&quot;</span>, <span class="hljs-number">456</span>&#125;;<br>    <br>    std::cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    std::cout &lt;&lt; (a &lt; b ? <span class="hljs-string">&quot;Alice before Bob&quot;</span> : <span class="hljs-string">&quot;Bob before Alice&quot;</span>) &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CS106L/" class="category-chain-item">CS106L</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CS106L-04</div>
+      <div>https://ruihan11.github.io/2025/11/29/CS106L-04/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ruihan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/30/CS106L-05/" title="CS106L-05">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CS106L-05</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/24/CS106L-03/" title="CS106L-03">
+                        <span class="hidden-mobile">CS106L-03</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
