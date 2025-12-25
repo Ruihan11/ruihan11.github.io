@@ -26,18 +26,18 @@
 <meta property="og:site_name" content="Ruihan&#39;s Blog">
 <meta property="og:description" content="Stanford CS106L C&#x2F;C++ Struct&#x2F;Initialization&#x2F;Stream">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-02.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-00.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-01.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-03.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-04.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-05.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-06.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-02.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-00.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-01.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-03.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-04.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-05.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-06.png">
 <meta property="article:published_time" content="2025-11-09T17:56:17.000Z">
-<meta property="article:modified_time" content="2025-11-30T19:26:43.949Z">
+<meta property="article:modified_time" content="2025-12-15T20:42:29.163Z">
 <meta property="article:author" content="Ruihan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ruihan11.github.io/images/cs106l-02.png">
+<meta name="twitter:image" content="https://ruihan11.github.io/images/cs106l/cs106l-02.png">
   
   
   
@@ -264,13 +264,13 @@
 <li>编译时：编译器扫描全部代码，检查错误</li>
 <li>运行时：执行已编译的程序</li>
 </ul>
-<p><img src="/../images/cs106l-02.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-02.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>对比 Python（解释型）：</strong></p>
 <ul>
 <li>运行时逐行解释和执行</li>
 <li>错误在代码执行到那行时才发现</li>
 </ul>
-<p><img src="/../images/cs106l-00.png" srcset="/img/loading.gif" lazyload> </p>
+<p><img src="/../images/cs106l/cs106l-00.png" srcset="/img/loading.gif" lazyload> </p>
 <p><strong>关键差异：</strong> C++ 能在你运行代码前就捕捉很多错误！</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// ❌ C++ 编译报错（类型不匹配）</span><br>std::string hello = <span class="hljs-string">&quot;Hello &quot;</span>;<br>std::string world = <span class="hljs-string">&quot;World!&quot;</span>;<br>std::cout &lt;&lt; hello * world &lt;&lt; std::endl;  <span class="hljs-comment">// 字符串不能相乘</span><br></code></pre></td></tr></table></figure>
 
@@ -310,12 +310,12 @@
 
 <h3 id="引用：变量的别名"><a href="#引用：变量的别名" class="headerlink" title="引用：变量的别名"></a>引用：变量的别名</h3><p><strong>引用 (<code>&amp;</code>)</strong> 让另一个变量名指向同一块内存。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span>&amp; ref = x;      <span class="hljs-comment">// ref 是 x 的别名</span><br><br>ref = <span class="hljs-number">10</span>;<br>std::cout &lt;&lt; x;    <span class="hljs-comment">// 输出 10（通过 ref 修改了 x）</span><br></code></pre></td></tr></table></figure>
-<p><img src="/../images/cs106l-01.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-01.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>按引用传递函数参数：</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">increment</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; n)</span> </span>&#123;<br>    n++;<br>&#125;<br><br><span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">increment</span>(x);<br>std::cout &lt;&lt; x;    <span class="hljs-comment">// 输出 6</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">shift</span><span class="hljs-params">(std::vector&lt;std::pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; &amp;nums)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; [num1, num2] : nums) &#123; <span class="hljs-comment">// 注意这里也需引用</span><br>        num1++;<br>        num2++;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>如果是 pass by value 就不会更改参数数值</p>
-<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/../images/cs106l-03.png" srcset="/img/loading.gif" lazyload></div><div class="group-image-wrap"><img src="/../images/cs106l-04.png" srcset="/img/loading.gif" lazyload></div></div></div>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/../images/cs106l/cs106l-03.png" srcset="/img/loading.gif" lazyload></div><div class="group-image-wrap"><img src="/../images/cs106l/cs106l-04.png" srcset="/img/loading.gif" lazyload></div></div></div>
 
 <h3 id="L值-vs-R值"><a href="#L值-vs-R值" class="headerlink" title="L值 vs R值"></a>L值 vs R值</h3><ul>
 <li><strong>L值</strong>：有内存地址的东西（变量）- 通常在 <code>=</code> 左边</li>
@@ -336,7 +336,7 @@
 <h3 id="流是什么"><a href="#流是什么" class="headerlink" title="流是什么"></a>流是什么</h3><p>流像一个”通道”，在你的程序和外部资源（键盘、屏幕、文件）之间传输数据。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::cout &lt;&lt; <span class="hljs-string">&quot;Hello&quot;</span>;           <span class="hljs-comment">// 输出流（写）</span><br>std::cin &gt;&gt; x;                   <span class="hljs-comment">// 输入流（读）</span><br><span class="hljs-function">std::ifstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">&quot;data.txt&quot;</span>)</span></span>;  <span class="hljs-comment">// 文件输入流</span><br><span class="hljs-function">std::ofstream <span class="hljs-title">out</span><span class="hljs-params">(<span class="hljs-string">&quot;out.txt&quot;</span>)</span></span>;    <span class="hljs-comment">// 文件输出流</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="流的继承关系"><a href="#流的继承关系" class="headerlink" title="流的继承关系"></a>流的继承关系</h3><p><img src="/../images/cs106l-05.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/cs106l-06.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="流的继承关系"><a href="#流的继承关系" class="headerlink" title="流的继承关系"></a>流的继承关系</h3><p><img src="/../images/cs106l/cs106l-05.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/cs106l/cs106l-06.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="字符串流：处理字符串如同文件"><a href="#字符串流：处理字符串如同文件" class="headerlink" title="字符串流：处理字符串如同文件"></a>字符串流：处理字符串如同文件</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::stringstream <span class="hljs-title">ss</span><span class="hljs-params">(<span class="hljs-string">&quot;Bjarne Stroustrup C++ rules&quot;</span>)</span></span>;<br><br>std::string first, last, language;<br>ss &gt;&gt; first &gt;&gt; last &gt;&gt; language;<br><br>std::cout &lt;&lt; first &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; last &lt;&lt; std::endl;  <span class="hljs-comment">// &quot;Bjarne Stroustrup&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>关键点：</strong> <code>&gt;&gt;</code> 在空白处停止</p>

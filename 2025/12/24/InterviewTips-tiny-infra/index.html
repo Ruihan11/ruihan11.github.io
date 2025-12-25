@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ruihan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="tiny-infra LLM推理引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="InterviewTips-tiny-infra">
+<meta property="og:url" content="https://ruihan11.github.io/2025/12/24/InterviewTips-tiny-infra/index.html">
+<meta property="og:site_name" content="Ruihan&#39;s Blog">
+<meta property="og:description" content="tiny-infra LLM推理引擎">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-25T00:41:17.000Z">
+<meta property="article:modified_time" content="2025-12-25T00:57:59.642Z">
+<meta property="article:author" content="Ruihan">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>InterviewTips-tiny-infra - Ruihan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ruihan11.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ruihan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Catagory</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="InterviewTips-tiny-infra"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-24 19:41" pubdate>
+          2025年12月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          80 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">InterviewTips-tiny-infra</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="项目3-tiny-infra-LLM推理引擎-STAR结构"><a href="#项目3-tiny-infra-LLM推理引擎-STAR结构" class="headerlink" title="项目3: tiny-infra LLM推理引擎 - STAR结构"></a>项目3: tiny-infra LLM推理引擎 - STAR结构</h2><h3 id="Situation-情境"><a href="#Situation-情境" class="headerlink" title="Situation (情境)"></a>Situation (情境)</h3><ul>
+<li>需要构建轻量级的LLM推理工具，用于Llama3-8B模型的性能基准测试</li>
+<li>HuggingFace Transformers作为baseline的推理吞吐量较低（458 tokens&#x2F;s on H100）</li>
+<li>现有推理框架（vLLM、TensorRT-LLM）复杂度高，不适合快速实验和教学</li>
+<li>需要理解从baseline到优化推理的完整技术路径</li>
+</ul>
+<h3 id="Task-任务"><a href="#Task-任务" class="headerlink" title="Task (任务)"></a>Task (任务)</h3><ul>
+<li>实现从HuggingFace baseline到高度优化的推理引擎的渐进式优化路径</li>
+<li>通过算子融合、KV cache、FlashAttention等技术提升吞吐量</li>
+<li>构建可扩展的benchmark框架，支持性能分析和profiling</li>
+<li>验证优化效果并提供清晰的性能对比</li>
+</ul>
+<h3 id="Action-行动"><a href="#Action-行动" class="headerlink" title="Action (行动)"></a>Action (行动)</h3><p><strong>1. 架构设计：渐进式优化路径</strong></p>
+<p>设计了4个版本的实现，形成完整的优化链条：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">llama3_00_hf </span>(HuggingFace <span class="hljs-keyword">Baseline)</span><br><span class="hljs-keyword"></span>  ↓<br><span class="hljs-keyword">llama3_01_naive </span>(Naive PyTorch)<br>  ↓<br><span class="hljs-keyword">llama3_02_opt </span>(Fused Operators + KV <span class="hljs-keyword">Cache </span>+ FlashAttention)<br>  ↓<br><span class="hljs-keyword">llama3_03_compile </span>(torch.compile Graph Optimization)<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. Baseline实现 (llama3_00_hf)</strong></p>
+<ul>
+<li><strong>架构</strong>: 直接使用HuggingFace Transformers的AutoModelForCausalLM</li>
+<li><strong>特点</strong>: <ul>
+<li>最小代码量（~100行）</li>
+<li>完整的HF生态集成（tokenizer、config、模型加载）</li>
+<li>开箱即用，但性能较低</li>
+</ul>
+</li>
+<li><strong>性能</strong>: 458 tokens&#x2F;s on H100</li>
+</ul>
+<p><strong>3. Naive PyTorch实现 (llama3_01_naive)</strong></p>
+<ul>
+<li><strong>架构</strong>: 基于HF模型的简单封装，手动实现generation loop</li>
+<li><strong>关键逻辑</strong>:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(max_new_tokens):<br>    outputs = <span class="hljs-variable language_">self</span>.model(input_ids)  <span class="hljs-comment"># 每次forward整个序列</span><br>    logits = outputs.logits[:, -<span class="hljs-number">1</span>, :]<br>    next_token = sample(logits)      <span class="hljs-comment"># top-k/top-p采样</span><br>    input_ids = torch.cat([input_ids, next_token], dim=-<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure></li>
+<li><strong>问题</strong>: <ul>
+<li>每步都重新计算所有token的attention（O(n²) 复杂度）</li>
+<li>无KV cache，计算冗余</li>
+</ul>
+</li>
+<li><strong>性能</strong>: 450 tokens&#x2F;s（略低于HF，因为缺少HF的内部优化）</li>
+</ul>
+<p><strong>4. 优化版本 (llama3_02_opt)</strong></p>
+<p><strong>核心优化策略</strong>:</p>
+<p><strong>a. 算子融合 (Operator Fusion)</strong></p>
+<ul>
+<li><p><strong>Fused QKV Projection</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 原始: 3次独立matmul</span><br>q = linear_q(x)  <span class="hljs-comment"># [batch, seq, dim] @ [dim, dim] → [batch, seq, dim]</span><br>k = linear_k(x)<br>v = linear_v(x)<br><br><span class="hljs-comment"># 融合: 1次matmul + split</span><br>qkv = linear_qkv(x)  <span class="hljs-comment"># [batch, seq, dim] @ [dim, 3*dim] → [batch, seq, 3*dim]</span><br>q, k, v = qkv.split([dim, dim, dim], dim=-<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>减少kernel launch开销（3次→1次）</li>
+<li>提升内存带宽利用率（3次读x→1次读x）</li>
+</ul>
+</li>
+<li><p><strong>Fused Gate-Up Projection (SwiGLU)</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 原始: 2次matmul + activation</span><br>gate = linear_gate(x)<br>up = linear_up(x)<br>out = silu(gate) * up<br><br><span class="hljs-comment"># 融合: 1次matmul + split + fused activation</span><br>gate_up = linear_gate_up(x)  <span class="hljs-comment"># 权重concat</span><br>gate, up = gate_up.chunk(<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)<br>out = fused_swiglu(gate, up)  <span class="hljs-comment"># JIT compiled</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Fused RMSNorm</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@torch.jit.script</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fused_rms_norm</span>(<span class="hljs-params">x, weight, eps=<span class="hljs-number">1e-6</span></span>):<br>    norm = torch.rsqrt(x.<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>).mean(-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>) + eps)<br>    <span class="hljs-keyword">return</span> x * norm * weight  <span class="hljs-comment"># 单次kernel调用</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>b. KV Cache优化</strong></p>
+<ul>
+<li><p><strong>Pre-allocation</strong>: 避免动态内存分配</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">KVCache</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, batch, max_seq_len, n_kv_heads, head_dim, device, dtype</span>):<br>        <span class="hljs-comment"># 预分配连续内存</span><br>        <span class="hljs-variable language_">self</span>.k_cache = torch.zeros(<br>            (batch, n_kv_heads, max_seq_len, head_dim),<br>            device=device, dtype=dtype<br>        )<br>        <span class="hljs-variable language_">self</span>.v_cache = torch.zeros(...)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>In-place Update</strong>: 直接修改cache，返回view（无copy）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self, k, v, start_pos</span>):<br>    seq_len = k.shape[<span class="hljs-number">2</span>]<br>    <span class="hljs-variable language_">self</span>.k_cache[:, :, start_pos:start_pos+seq_len] = k  <span class="hljs-comment"># in-place</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.k_cache[:, :, :start_pos+seq_len]  <span class="hljs-comment"># view</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>复杂度优化</strong>: Prefill O(n²) → Decode O(1)</p>
+</li>
+</ul>
+<p><strong>c. FlashAttention集成</strong></p>
+<ul>
+<li>使用PyTorch的SDPA (Scaled Dot-Product Attention)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">out = F.scaled_dot_product_attention(<br>    q, k, v,<br>    attn_mask=<span class="hljs-literal">None</span>,<br>    dropout_p=<span class="hljs-number">0.0</span>,<br>    is_causal=<span class="hljs-literal">True</span>  <span class="hljs-comment"># Prefill时使用causal mask</span><br>)<br></code></pre></td></tr></table></figure></li>
+<li><strong>优势</strong>:<ul>
+<li>Flash-2 kernel自动选择（GPU支持时）</li>
+<li>Tiling优化，减少HBM访问</li>
+<li>IO复杂度: O(N²d²&#x2F;M) (M是SRAM大小)</li>
+</ul>
+</li>
+</ul>
+<p><strong>d. RoPE优化</strong></p>
+<ul>
+<li><p><strong>预计算cos&#x2F;sin</strong>: 避免重复计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化时计算并缓存</span><br>t = torch.arange(max_seq_len)<br>freqs = torch.outer(t, inv_freq)<br><span class="hljs-variable language_">self</span>.cos_cached = freqs.cos()<br><span class="hljs-variable language_">self</span>.sin_cached = freqs.sin()<br><br><span class="hljs-comment"># 前向时直接索引</span><br>cos = <span class="hljs-variable language_">self</span>.cos_cached[start_pos:start_pos+seq_len]<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Fused Application</strong>: JIT编译的RoPE kernel</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@torch.jit.script</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fused_rope</span>(<span class="hljs-params">q, k, cos, sin</span>):<br>    q1, q2 = q.chunk(<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)<br>    k1, k2 = k.chunk(<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)<br>    q_rot = torch.cat([q1*cos - q2*sin, q2*cos + q1*sin], dim=-<span class="hljs-number">1</span>)<br>    k_rot = torch.cat([k1*cos - k2*sin, k2*cos + k1*sin], dim=-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> q_rot, k_rot<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>e. GQA (Grouped Query Attention)优化</strong></p>
+<ul>
+<li><strong>高效扩展</strong>: 使用index_select而非repeat<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># n_heads=32, n_kv_heads=8, n_rep=4</span><br><span class="hljs-comment"># 原始: repeat会创建新tensor</span><br>k = k.repeat_interleave(n_rep, dim=<span class="hljs-number">1</span>)  <span class="hljs-comment"># 慢</span><br><br><span class="hljs-comment"># 优化: index_select复用内存</span><br>indices = torch.arange(n_kv_heads).repeat_interleave(n_rep)<br>k = k.index_select(<span class="hljs-number">1</span>, indices)  <span class="hljs-comment"># 快</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>f. CUDA优化</strong></p>
+<ul>
+<li><strong>TF32</strong>: <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.backends.cuda.matmul.allow_tf32 = <span class="hljs-literal">True</span><br>torch.backends.cudnn.allow_tf32 = <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>CuDNN Benchmark</strong>: 自动选择最优卷积算法</li>
+<li><strong>Float32 Matmul Precision</strong>: ‘high’模式使用Tensor Core</li>
+</ul>
+<p><strong>性能</strong>: 688 tokens&#x2F;s（1.5倍提升）</p>
+<p><strong>5. torch.compile优化版本 (llama3_03_compile)</strong></p>
+<p><strong>核心技术</strong>: 图编译消除Python开销</p>
+<ul>
+<li><p><strong>编译策略</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 分别编译prefill和decode</span><br><span class="hljs-variable language_">self</span>.forward_compiled = torch.<span class="hljs-built_in">compile</span>(<br>    <span class="hljs-variable language_">self</span>._forward_impl,<br>    mode=<span class="hljs-string">&quot;reduce-overhead&quot;</span>,  <span class="hljs-comment"># 最小化调度开销</span><br>    fullgraph=<span class="hljs-literal">False</span>,         <span class="hljs-comment"># 允许部分图</span><br>    dynamic=<span class="hljs-literal">True</span>             <span class="hljs-comment"># 支持动态shape</span><br>)<br><br><span class="hljs-variable language_">self</span>.decode_compiled = torch.<span class="hljs-built_in">compile</span>(<br>    <span class="hljs-variable language_">self</span>._decode_step_impl,<br>    mode=<span class="hljs-string">&quot;reduce-overhead&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Warmup编译</strong>: 预先触发编译避免首次延迟</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> torch.inference_mode():<br>    dummy_tokens = torch.randint(<span class="hljs-number">0</span>, vocab_size, (<span class="hljs-number">1</span>, <span class="hljs-number">8</span>), device=device)<br>    _ = <span class="hljs-variable language_">self</span>.forward_compiled(dummy_tokens)  <span class="hljs-comment"># 触发编译</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>优化原理</strong>:</p>
+<ul>
+<li>将Python控制流转换为静态图</li>
+<li>消除Python解释器开销</li>
+<li>启用更激进的kernel fusion</li>
+<li>自动生成优化的CUDA kernel</li>
+</ul>
+</li>
+</ul>
+<p><strong>性能</strong>: 961 tokens&#x2F;s（2.1倍提升）</p>
+<p><strong>6. Benchmark框架</strong></p>
+<ul>
+<li><p><strong>Throughput测量</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Warmup避免冷启动</span><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(warmup_runs):<br>    _ = model.generate(prompt, num_tokens)<br><br><span class="hljs-comment"># 实际测量</span><br>torch.cuda.synchronize()<br>start = time.perf_counter()<br>_ = model.generate(prompt, num_tokens)<br>torch.cuda.synchronize()<br>elapsed = time.perf_counter() - start<br>throughput = num_tokens / elapsed<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Profiling支持</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> profile(activities=[ProfilerActivity.CUDA]) <span class="hljs-keyword">as</span> prof:<br>    _ = model.generate(prompt, num_tokens)<br>prof.export_chrome_trace(<span class="hljs-string">&quot;profile.json&quot;</span>)  <span class="hljs-comment"># 可视化分析</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Result-结果"><a href="#Result-结果" class="headerlink" title="Result (结果)"></a>Result (结果)</h3><p><strong>性能对比 (H100 SXM, batch_size&#x3D;8, num_tokens&#x3D;256)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>吞吐量 (tokens&#x2F;s)</th>
+<th>延迟 (ms)</th>
+<th>加速比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HF Baseline</td>
+<td>458.80</td>
+<td>4463.86</td>
+<td>1.0×</td>
+</tr>
+<tr>
+<td>Naive PyTorch</td>
+<td>450.71</td>
+<td>4543.91</td>
+<td>0.98×</td>
+</tr>
+<tr>
+<td>Optimized</td>
+<td>688.81</td>
+<td>2973.23</td>
+<td>1.5×</td>
+</tr>
+<tr>
+<td>torch.compile</td>
+<td>961.48</td>
+<td>2130.04</td>
+<td>2.1×</td>
+</tr>
+</tbody></table>
+<p><strong>关键成果</strong>:</p>
+<ul>
+<li>实现2.1倍端到端加速（相比HF baseline）</li>
+<li>构建清晰的优化路径，每步都有性能增益</li>
+<li>完整的benchmark和profiling工具链</li>
+<li>模块化设计，易于扩展和教学</li>
+</ul>
+<hr>
+<h2 id="技术深度Q-A"><a href="#技术深度Q-A" class="headerlink" title="技术深度Q&amp;A"></a>技术深度Q&amp;A</h2><h3 id="Q1-为什么Fused-QKV能带来性能提升？"><a href="#Q1-为什么Fused-QKV能带来性能提升？" class="headerlink" title="Q1: 为什么Fused QKV能带来性能提升？"></a>Q1: 为什么Fused QKV能带来性能提升？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>减少kernel launch开销</strong>: GPU kernel启动有固定延迟（~5μs），3次独立matmul → 1次融合matmul</li>
+<li><strong>提升内存带宽利用率</strong>:<ul>
+<li>原始: 读取x三次（每次都从HBM加载）</li>
+<li>融合: 读取x一次，权重也合并为连续内存</li>
+</ul>
+</li>
+<li><strong>更好的L2 cache利用</strong>: 单次大matmul比多次小matmul有更高的cache命中率</li>
+<li><strong>量化收益</strong>: 在H100上约10-15%的attention层加速</li>
+</ul>
+<p><strong>可能的追问</strong>: “为什么不融合更多操作？”</p>
+<ul>
+<li>融合过多会增加寄存器压力和shared memory使用</li>
+<li>某些操作（如RoPE）需要不同的数据layout，融合反而增加开销</li>
+<li>需要通过profiling找到最优融合粒度</li>
+</ul>
+<hr>
+<h3 id="Q2-KV-Cache的内存占用如何计算？"><a href="#Q2-KV-Cache的内存占用如何计算？" class="headerlink" title="Q2: KV Cache的内存占用如何计算？"></a>Q2: KV Cache的内存占用如何计算？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>公式</strong>: <figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-type">KV</span> <span class="hljs-type">Cache</span> <span class="hljs-type">Size</span> = <span class="hljs-number">2</span> × batch_size × n_kv_heads × max_seq_len × head_dim × sizeof(d<span class="hljs-keyword">type</span>)<br></code></pre></td></tr></table></figure></li>
+<li><strong>Llama3-8B示例</strong> (GQA: n_kv_heads&#x3D;8, head_dim&#x3D;128):<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">batch=8, seq=4096, dtype=fp16:<br><span class="hljs-section">= 2 × 8 × 8 × 4096 × 128 × 2 bytes</span><br><span class="hljs-section">= 16 GB</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>优化策略</strong>:<ul>
+<li><strong>PagedAttention</strong> (vLLM): 按需分配，非连续存储</li>
+<li><strong>Multi-Query Attention</strong> (MQA): n_kv_heads&#x3D;1，减少8倍</li>
+<li><strong>量化KV Cache</strong>: INT8或INT4存储</li>
+</ul>
+</li>
+</ul>
+<p><strong>可能的追问</strong>: “为什么不动态分配？”</p>
+<ul>
+<li>动态分配会导致内存碎片和分配开销</li>
+<li>Prefill阶段已知最大长度，预分配避免reallocation</li>
+<li>对于推理服务，通过batch调度可以复用cache</li>
+</ul>
+<hr>
+<h3 id="Q3-FlashAttention的IO复杂度优化原理是什么？"><a href="#Q3-FlashAttention的IO复杂度优化原理是什么？" class="headerlink" title="Q3: FlashAttention的IO复杂度优化原理是什么？"></a>Q3: FlashAttention的IO复杂度优化原理是什么？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><p><strong>标准Attention的问题</strong>:</p>
+<ul>
+<li>计算S &#x3D; QK^T: O(N²d) FLOP，O(N²) HBM读写</li>
+<li>Softmax: 需要materialized S矩阵</li>
+<li>输出P &#x3D; softmax(S)V: 又需要读写P矩阵</li>
+<li>总IO: O(N²)，瓶颈在HBM带宽</li>
+</ul>
+</li>
+<li><p><strong>FlashAttention优化</strong>:</p>
+<ul>
+<li><strong>Tiling</strong>: 将Q、K、V分块加载到SRAM（on-chip）</li>
+<li><strong>Fused Kernel</strong>: 在SRAM内完成QK^T、softmax、PV的完整流程</li>
+<li><strong>Online Softmax</strong>: 增量更新softmax分母，避免materialized S</li>
+<li><strong>IO复杂度</strong>: O(N²d²&#x2F;M)，M是SRAM大小</li>
+</ul>
+</li>
+<li><p><strong>实际效果</strong>: H100上2-3倍加速（长序列时更明显）</p>
+</li>
+</ul>
+<p><strong>可能的追问</strong>: “FlashAttention对短序列有效吗？”</p>
+<ul>
+<li>短序列（&lt;512）时IO不是瓶颈，加速不明显</li>
+<li>主要收益在长序列（&gt;2048）和大batch</li>
+</ul>
+<hr>
+<h3 id="Q4-torch-compile的”reduce-overhead”模式做了什么？"><a href="#Q4-torch-compile的”reduce-overhead”模式做了什么？" class="headerlink" title="Q4: torch.compile的”reduce-overhead”模式做了什么？"></a>Q4: torch.compile的”reduce-overhead”模式做了什么？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>优化目标</strong>: 最小化Python调度开销</li>
+<li><strong>技术手段</strong>:<ul>
+<li><strong>CUDA Graph Capture</strong>: 将固定shape的计算图录制为CUDA graph，后续直接replay</li>
+<li><strong>Aggressive Fusion</strong>: 更激进的算子融合（如fuse pointwise ops）</li>
+<li><strong>Static Shape Assumption</strong>: 假设shape不变，生成特化的kernel</li>
+</ul>
+</li>
+<li><strong>代价</strong>: <ul>
+<li>编译时间更长（首次运行慢）</li>
+<li>对动态shape支持较差（需要重新编译）</li>
+</ul>
+</li>
+</ul>
+<p><strong>可能的追问</strong>: “为什么不用max-autotune模式？”</p>
+<ul>
+<li>max-autotune会搜索最优kernel配置，编译时间非常长（&gt;10分钟）</li>
+<li>reduce-overhead对大多数场景已足够，是工程实践的平衡点</li>
+</ul>
+<hr>
+<h3 id="Q5-RoPE的预计算策略为什么有效？"><a href="#Q5-RoPE的预计算策略为什么有效？" class="headerlink" title="Q5: RoPE的预计算策略为什么有效？"></a>Q5: RoPE的预计算策略为什么有效？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>原理</strong>: RoPE的cos&#x2F;sin只依赖position，与input无关</li>
+<li><strong>优化</strong>:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化时计算max_seq_len的所有位置</span><br>freqs = outer(arange(max_seq_len), inv_freq)<br>cos_cached = freqs.cos()  <span class="hljs-comment"># [max_seq_len, dim//2]</span><br><br><span class="hljs-comment"># 推理时直接索引</span><br>cos = cos_cached[start_pos:start_pos+seq_len]  <span class="hljs-comment"># view，无copy</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>收益</strong>: 避免每次forward重复计算三角函数（~5% latency降低）</li>
+</ul>
+<p><strong>可能的追问</strong>: “为什么不用查找表？”</p>
+<ul>
+<li>查找表需要离散化position，会损失精度</li>
+<li>连续的cos&#x2F;sin缓存已经足够快（索引是O(1)操作）</li>
+</ul>
+<hr>
+<h3 id="Q6-GQA的index-select比repeat快多少？"><a href="#Q6-GQA的index-select比repeat快多少？" class="headerlink" title="Q6: GQA的index_select比repeat快多少？"></a>Q6: GQA的index_select比repeat快多少？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>Benchmark</strong> (n_kv_heads&#x3D;8, n_rep&#x3D;4, head_dim&#x3D;128, batch&#x3D;8, seq&#x3D;1024):<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">repeat_interleave: ~120 μs</span><br><span class="hljs-section">index_select:      ~40 μs</span><br><span class="hljs-section">加速比: 3×</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>原因</strong>:<ul>
+<li>repeat_interleave创建新tensor并复制数据</li>
+<li>index_select复用原tensor的内存，只重新索引</li>
+</ul>
+</li>
+<li><strong>内存节省</strong>: repeat会增加显存占用，index_select不会</li>
+</ul>
+<hr>
+<h3 id="Q7-Naive版本的O-n²-复杂度体现在哪里？"><a href="#Q7-Naive版本的O-n²-复杂度体现在哪里？" class="headerlink" title="Q7: Naive版本的O(n²)复杂度体现在哪里？"></a>Q7: Naive版本的O(n²)复杂度体现在哪里？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>问题</strong>: 每次decode都forward整个序列<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_tokens):<br>    <span class="hljs-comment"># 序列长度每次+1: [seq_len, seq_len+1, seq_len+2, ...]</span><br>    outputs = model(input_ids)  <span class="hljs-comment"># Attention计算整个序列</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>计算量</strong>:<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Prefill</span><span class="hljs-operator">:</span> <span class="hljs-built_in">N</span> × <span class="hljs-built_in">N</span> <span class="hljs-variable">attention</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span> <span class="hljs-operator">=</span> <span class="hljs-type">prompt_len</span><span class="hljs-punctuation">)</span><br><span class="hljs-variable">Decode</span> <span class="hljs-variable">step</span> <span class="hljs-number">1</span><span class="hljs-operator">:</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-punctuation">)</span> × <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-punctuation">)</span><br><span class="hljs-variable">Decode</span> <span class="hljs-variable">step</span> <span class="hljs-number">2</span><span class="hljs-operator">:</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span> × <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><br><span class="hljs-operator">...</span><br><span class="hljs-built_in">Total</span><span class="hljs-operator">:</span> <span class="hljs-built_in">N</span>² <span class="hljs-operator">+</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-punctuation">)</span>² <span class="hljs-operator">+</span> <span class="hljs-operator">...</span> <span class="hljs-operator">+</span> <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-variable">M</span><span class="hljs-punctuation">)</span>² ≈ <span class="hljs-built_in">O</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span>²<span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span> <span class="hljs-built_in">O</span><span class="hljs-punctuation">(</span><span class="hljs-variable">M</span>²<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>KV Cache优化后</strong>:<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Prefill</span><span class="hljs-operator">:</span> <span class="hljs-built_in">N</span> × <span class="hljs-built_in">N</span> <span class="hljs-punctuation">(</span>一次性<span class="hljs-punctuation">)</span><br><span class="hljs-variable">Decode</span> <span class="hljs-variable">step</span> <span class="hljs-variable">i</span><span class="hljs-operator">:</span> <span class="hljs-number">1</span> × <span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span><span class="hljs-operator">+</span><span class="hljs-variable">i</span><span class="hljs-punctuation">)</span> <span class="hljs-punctuation">(</span>只计算新<span class="hljs-variable">token</span>的<span class="hljs-variable">attention</span><span class="hljs-punctuation">)</span><br><span class="hljs-built_in">Total</span><span class="hljs-operator">:</span> <span class="hljs-built_in">O</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">N</span>²<span class="hljs-punctuation">)</span> <span class="hljs-operator">+</span> <span class="hljs-built_in">O</span><span class="hljs-punctuation">(</span><span class="hljs-variable">M</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="Q8-为什么需要分别编译prefill和decode？"><a href="#Q8-为什么需要分别编译prefill和decode？" class="headerlink" title="Q8: 为什么需要分别编译prefill和decode？"></a>Q8: 为什么需要分别编译prefill和decode？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>Shape差异</strong>: <ul>
+<li>Prefill: input shape&#x3D;[batch, prompt_len]，变长</li>
+<li>Decode: input shape&#x3D;[batch, 1]，固定</li>
+</ul>
+</li>
+<li><strong>计算模式差异</strong>:<ul>
+<li>Prefill: 全attention（causal mask），计算密集</li>
+<li>Decode: KV cache lookup，内存密集</li>
+</ul>
+</li>
+<li><strong>优化策略不同</strong>:<ul>
+<li>Prefill: 重matmul优化，tiling</li>
+<li>Decode: 重内存访问优化，cache locality</li>
+</ul>
+</li>
+<li><strong>编译收益</strong>: 分别编译能针对性优化，prefill和decode各提升10-20%</li>
+</ul>
+<hr>
+<h3 id="Q9-如何扩展到多GPU推理？"><a href="#Q9-如何扩展到多GPU推理？" class="headerlink" title="Q9: 如何扩展到多GPU推理？"></a>Q9: 如何扩展到多GPU推理？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>Tensor Parallelism</strong> (单节点多GPU):<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 按列切分QKV权重</span><br>qkv_weight = [qkv_weight_gpu0, qkv_weight_gpu1, ...]  <span class="hljs-comment"># 沿output_dim切分</span><br><br><span class="hljs-comment"># 前向</span><br>qkv_local = F.linear(x, qkv_weight_local)  <span class="hljs-comment"># 每个GPU计算部分heads</span><br>out_local = attention(qkv_local)<br>out = all_reduce(out_local)  <span class="hljs-comment"># 汇总</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>Pipeline Parallelism</strong> (跨层切分):<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">GPU0: layers[<span class="hljs-number">0</span>:<span class="hljs-number">8</span>]<br>GPU1: layers[<span class="hljs-number">8</span>:<span class="hljs-number">16</span>]<br>GPU2: layers[<span class="hljs-number">16</span>:<span class="hljs-number">24</span>]<br>GPU3: layers[<span class="hljs-number">24</span>:<span class="hljs-number">32</span>]<br></code></pre></td></tr></table></figure></li>
+<li><strong>Sequence Parallelism</strong>: 按sequence维度切分（减少activation memory）</li>
+</ul>
+<p><strong>工程实践</strong>:</p>
+<ul>
+<li>vLLM使用Tensor Parallelism + PagedAttention</li>
+<li>Megatron-LM使用3D Parallelism (Tensor + Pipeline + Data)</li>
+</ul>
+<hr>
+<h3 id="Q10-如何扩展到多节点推理？"><a href="#Q10-如何扩展到多节点推理？" class="headerlink" title="Q10: 如何扩展到多节点推理？"></a>Q10: 如何扩展到多节点推理？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>跨节点通信</strong>: <ul>
+<li>NCCL: GPU间高速通信（InfiniBand&#x2F;RoCE）</li>
+<li>瓶颈: 网络带宽（100Gbps）&lt; NVLink带宽（900GB&#x2F;s）</li>
+</ul>
+</li>
+<li><strong>优化策略</strong>:<ul>
+<li><strong>减少通信</strong>: Expert Parallelism（MoE模型）避免all-to-all</li>
+<li><strong>Communication Overlap</strong>: 计算和通信流水线化</li>
+<li><strong>Hierarchical All-Reduce</strong>: 节点内NVLink + 节点间NCCL</li>
+</ul>
+</li>
+<li><strong>框架支持</strong>:<ul>
+<li>Ray: 动态调度，支持异构集群</li>
+<li>Megatron-LM: 静态并行策略，性能最优</li>
+</ul>
+</li>
+</ul>
+<p><strong>示例架构</strong> (8节点 × 8 H100):</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">Tensor Parallelism: <span class="hljs-number">8</span> GPUs/<span class="hljs-keyword">node</span> <span class="hljs-title">(NVLink</span>)<br>Pipeline Parallelism: <span class="hljs-number">8</span> nodes (NCCL)<br>总并行度: <span class="hljs-number">64</span> GPUs<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Q11-Fused-SwiGLU的JIT编译为什么重要？"><a href="#Q11-Fused-SwiGLU的JIT编译为什么重要？" class="headerlink" title="Q11: Fused SwiGLU的JIT编译为什么重要？"></a>Q11: Fused SwiGLU的JIT编译为什么重要？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>问题</strong>: SwiGLU涉及多个element-wise操作<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 未融合: 4个kernel launch</span><br>silu_out = F.silu(gate)     <span class="hljs-comment"># kernel 1</span><br>mul_out = silu_out * up     <span class="hljs-comment"># kernel 2</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>JIT优化</strong>:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@torch.jit.script</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fused_swiglu</span>(<span class="hljs-params">gate, up</span>):<br>    <span class="hljs-keyword">return</span> F.silu(gate) * up  <span class="hljs-comment"># 编译为单个kernel</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>收益</strong>: <ul>
+<li>减少kernel launch: 2次 → 1次</li>
+<li>减少HBM访问: 读写4次 → 读写2次</li>
+<li>~15-20% FFN加速</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Q12-如何量化评估各优化的贡献？"><a href="#Q12-如何量化评估各优化的贡献？" class="headerlink" title="Q12: 如何量化评估各优化的贡献？"></a>Q12: 如何量化评估各优化的贡献？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>Ablation Study</strong>: 逐步移除优化，测量性能<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nix">Full <span class="hljs-params">Optimized:</span>           <span class="hljs-number">961</span> tokens<span class="hljs-symbol">/s</span><br><span class="hljs-operator">-</span> torch.<span class="hljs-params">compile:</span>          <span class="hljs-number">688</span> tokens<span class="hljs-symbol">/s</span>  (compile贡献: <span class="hljs-number">40</span>%)<br><span class="hljs-operator">-</span> KV <span class="hljs-params">Cache:</span>               ~<span class="hljs-number">200</span> tokens<span class="hljs-symbol">/s</span>  (KV Cache贡献: <span class="hljs-number">71</span>%)<br><span class="hljs-operator">-</span> Fused <span class="hljs-params">Ops:</span>              ~<span class="hljs-number">600</span> tokens<span class="hljs-symbol">/s</span>  (Fusion贡献: <span class="hljs-number">13</span>%)<br></code></pre></td></tr></table></figure></li>
+<li><strong>Profiling</strong>: 使用PyTorch Profiler分析时间占比<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Attention</span>:     <span class="hljs-number">45</span>% (FlashAttention优化重点)<br><span class="hljs-attribute">FFN</span>:           <span class="hljs-number">30</span>% (Fusion优化重点)<br><span class="hljs-attribute">Embedding</span>:     <span class="hljs-number">5</span>%<br><span class="hljs-attribute">Other</span>:         <span class="hljs-number">20</span>%<br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="Q13-为什么Naive版本比HF还慢？"><a href="#Q13-为什么Naive版本比HF还慢？" class="headerlink" title="Q13: 为什么Naive版本比HF还慢？"></a>Q13: 为什么Naive版本比HF还慢？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>HF的隐藏优化</strong>:<ul>
+<li>使用了C++扩展的fast tokenizer</li>
+<li>Attention有手写CUDA kernel（某些GPU）</li>
+<li>内置KV cache实现</li>
+</ul>
+</li>
+<li><strong>Naive的劣势</strong>:<ul>
+<li>纯Python generation loop</li>
+<li>无KV cache</li>
+<li>每次forward整个序列</li>
+</ul>
+</li>
+<li><strong>教学价值</strong>: Naive版本展示了最基础的实现逻辑</li>
+</ul>
+<hr>
+<h3 id="Q14-生产环境推理还需要哪些优化？"><a href="#Q14-生产环境推理还需要哪些优化？" class="headerlink" title="Q14: 生产环境推理还需要哪些优化？"></a>Q14: 生产环境推理还需要哪些优化？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>Continuous Batching</strong> (vLLM):<ul>
+<li>动态调整batch，最大化GPU利用率</li>
+<li>不同请求的序列长度不同，按需调度</li>
+</ul>
+</li>
+<li><strong>Speculative Decoding</strong>:<ul>
+<li>小模型预测多个token，大模型验证</li>
+<li>理论加速2-3倍（无accuracy损失）</li>
+</ul>
+</li>
+<li><strong>Quantization</strong>:<ul>
+<li>INT8&#x2F;INT4量化减少显存和带宽</li>
+<li>GPTQ、AWQ等方法</li>
+</ul>
+</li>
+<li><strong>Request Routing</strong>:<ul>
+<li>根据负载动态路由到不同副本</li>
+<li>长序列和短序列分离处理</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Q15-项目的下一步优化方向是什么？"><a href="#Q15-项目的下一步优化方向是什么？" class="headerlink" title="Q15: 项目的下一步优化方向是什么？"></a>Q15: 项目的下一步优化方向是什么？</h3><p><strong>回答要点</strong>:</p>
+<ul>
+<li><strong>短期</strong>:<ul>
+<li>添加Speculative Decoding支持</li>
+<li>实现INT8量化</li>
+<li>优化batch generation（当前只支持单batch）</li>
+</ul>
+</li>
+<li><strong>中期</strong>:<ul>
+<li>支持Tensor Parallelism（多GPU）</li>
+<li>集成Continuous Batching</li>
+<li>添加Prefix Caching</li>
+</ul>
+</li>
+<li><strong>长期</strong>:<ul>
+<li>支持更多模型（Mistral、Qwen等）</li>
+<li>分布式推理（多节点）</li>
+<li>Production-ready serving框架</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>InterviewTips-tiny-infra</div>
+      <div>https://ruihan11.github.io/2025/12/24/InterviewTips-tiny-infra/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ruihan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/24/InterviewTips-aviation-training/" title="InterviewTips-aviation-training">
+                        <span class="hidden-mobile">InterviewTips-aviation-training</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

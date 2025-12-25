@@ -26,17 +26,17 @@
 <meta property="og:site_name" content="Ruihan&#39;s Blog">
 <meta property="og:description" content="Stanford CS106L C&#x2F;C++：STL">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-09.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-07.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-08.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-06-iter-claw.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-06-iter-hierarchy.png">
-<meta property="og:image" content="https://ruihan11.github.io/images/cs106l-10.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-09.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-07.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-08.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-06-iter-claw.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-06-iter-hierarchy.png">
+<meta property="og:image" content="https://ruihan11.github.io/images/cs106l/cs106l-10.png">
 <meta property="article:published_time" content="2025-11-17T21:00:02.000Z">
-<meta property="article:modified_time" content="2025-11-30T19:27:10.166Z">
+<meta property="article:modified_time" content="2025-12-15T20:42:57.991Z">
 <meta property="article:author" content="Ruihan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ruihan11.github.io/images/cs106l-09.png">
+<meta name="twitter:image" content="https://ruihan11.github.io/images/cs106l/cs106l-09.png">
   
   
   
@@ -258,10 +258,10 @@
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/cs106l-09.png" srcset="/img/loading.gif" lazyload></p>
+                <p><img src="/../images/cs106l/cs106l-09.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <h2 id="第5讲：容器（Containers）📦"><a href="#第5讲：容器（Containers）📦" class="headerlink" title="第5讲：容器（Containers）📦"></a>第5讲：容器（Containers）📦</h2><p>容器是 C++ 中组织数据的核心工具，提供类型安全、高性能的通用数据结构。</p>
-<p><img src="/../images/cs106l-07.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-07.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="容器是什么"><a href="#容器是什么" class="headerlink" title="容器是什么"></a>容器是什么</h3><p>容器是封装了<strong>数据组织方式</strong>的模板类，分为两大类：</p>
 <ul>
 <li><strong>序列容器</strong>：线性排列元素（如数组、双端队列）  </li>
@@ -423,7 +423,7 @@
 </tr>
 </tbody></table>
 <hr>
-<p><img src="/../images/cs106l-08.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-08.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <h2 id="第6讲：迭代器与指针"><a href="#第6讲：迭代器与指针" class="headerlink" title="第6讲：迭代器与指针"></a>第6讲：迭代器与指针</h2><h3 id="容器遍历的统一接口：迭代器"><a href="#容器遍历的统一接口：迭代器" class="headerlink" title="容器遍历的统一接口：迭代器"></a>容器遍历的统一接口：迭代器</h3><p><strong>for-each 循环的底层实现原理：</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; elem : container) &#123;<br>    std::cout &lt;&lt; elem &lt;&lt; std::endl;<br>&#125;<br><span class="hljs-comment">// ⇓ 实际展开为 ⇓</span><br><span class="hljs-keyword">auto</span> b = container.<span class="hljs-built_in">begin</span>();<br><span class="hljs-keyword">auto</span> e = container.<span class="hljs-built_in">end</span>();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = b; it != e; ++it) &#123;<br>    <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; elem = *it;<br>    std::cout &lt;&lt; elem &lt;&lt; std::endl;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -439,7 +439,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../images/cs106l-06-iter-claw.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-06-iter-claw.png" srcset="/img/loading.gif" lazyload></p>
 <div class="note note-success">
             <p>💡 <strong>为什么用 <code>++it</code> 而不是 <code>it++</code>？</strong><br>后置自增 <code>it++</code> 会构造一个旧值副本，对复杂迭代器对象（非 <code>int</code>）有额外开销；前缀 <code>++it</code> 仅返回引用，<strong>永不更慢，有时更快</strong>（Bjarne 语）。</p> 
           </div>
@@ -484,7 +484,7 @@
 <td><code>std::sort</code>, <code>std::binary_search</code></td>
 </tr>
 </tbody></table>
-<p><img src="/../images/cs106l-06-iter-hierarchy.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-06-iter-hierarchy.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>关键限制示例：</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;<span class="hljs-type">int</span>&gt; vec&#123;<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;<br>std::<span class="hljs-built_in">sort</span>(vec.<span class="hljs-built_in">begin</span>(), vec.<span class="hljs-built_in">end</span>());  <span class="hljs-comment">// ✅ OK: random-access iterators</span><br><br>std::set&lt;<span class="hljs-type">int</span>&gt; s&#123;<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;<br>std::<span class="hljs-built_in">sort</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>());      <span class="hljs-comment">// ❌ 编译错误: set::iterator is bidirectional only</span><br></code></pre></td></tr></table></figure>
 
@@ -534,7 +534,7 @@
             <p>⚠️ <strong>钻石问题与虚继承：</strong><br>多重继承可能导致基类重复实例化（如 <code>D</code> 含两份 <code>A</code>）。<br><strong>解决方案</strong>：<code>class B : virtual public A</code> + <code>class C : virtual public A</code> → <code>D</code> 仅持有一份 <code>A</code>。</p> 
           </div>
 
-<p><img src="/../images/cs106l-10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/cs106l/cs106l-10.png" srcset="/img/loading.gif" lazyload></p>
 <details close>
 <summary>Inheritance without virtual</summary>
 
