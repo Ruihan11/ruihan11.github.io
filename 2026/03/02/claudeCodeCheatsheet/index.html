@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ruihan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Quick reference for Claude Code — slash commands, hooks, skills, and subagents.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code Cheat Sheet">
+<meta property="og:url" content="https://ruihan11.github.io/2026/03/02/claudeCodeCheatsheet/index.html">
+<meta property="og:site_name" content="Ruihan&#39;s Blog">
+<meta property="og:description" content="Quick reference for Claude Code — slash commands, hooks, skills, and subagents.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-02T11:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-02T16:12:19.877Z">
+<meta property="article:author" content="Ruihan">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Claude Code Cheat Sheet - Ruihan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ruihan11.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ruihan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Claude Code Cheat Sheet"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-02 19:30" pubdate>
+          2026年3月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Claude Code Cheat Sheet</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>A quick reference for the Claude Code CLI. Covers the commands I use most, how to wire up hooks, define skills, and spin up subagents.</p>
+<!-- more -->
+
+<hr>
+<h2 id="Slash-Commands"><a href="#Slash-Commands" class="headerlink" title="Slash Commands"></a>Slash Commands</h2><p>Run these in the Claude Code prompt:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/help</code></td>
+<td>Show all available commands</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>Clear conversation history</td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>Compact context to save tokens</td>
+</tr>
+<tr>
+<td><code>/cost</code></td>
+<td>Show token usage and cost for the session</td>
+</tr>
+<tr>
+<td><code>/status</code></td>
+<td>Show current model and config</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>Switch model</td>
+</tr>
+<tr>
+<td><code>/memory</code></td>
+<td>View and manage persistent memory</td>
+</tr>
+<tr>
+<td><code>/fast</code></td>
+<td>Toggle fast mode (Opus 4 with faster output)</td>
+</tr>
+<tr>
+<td><code>/review-pr</code></td>
+<td>Review a pull request (if skill defined)</td>
+</tr>
+<tr>
+<td><code>/commit</code></td>
+<td>Commit staged changes (if skill defined)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Slash commands prefixed with <code>/</code> that aren’t built-in are <strong>skills</strong> — more on those below.</p>
+</blockquote>
+<hr>
+<h2 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h2><p>Hooks run shell commands automatically when Claude takes certain actions. Configure them in <code>.claude/settings.json</code>:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;hooks&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;user-prompt-submit-hook&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo &#x27;User submitted a prompt&#x27;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;pre-tool-use&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo &#x27;About to call a tool&#x27;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;post-tool-use&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo &#x27;Tool call finished&#x27;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Common-hook-events"><a href="#Common-hook-events" class="headerlink" title="Common hook events"></a>Common hook events</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>user-prompt-submit-hook</code></td>
+<td>User sends a message</td>
+</tr>
+<tr>
+<td><code>pre-tool-use</code></td>
+<td>Before any tool call</td>
+</tr>
+<tr>
+<td><code>post-tool-use</code></td>
+<td>After any tool call</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>Claude finishes responding</td>
+</tr>
+</tbody></table>
+<h3 id="Practical-examples"><a href="#Practical-examples" class="headerlink" title="Practical examples"></a>Practical examples</h3><p><strong>Auto-format on file edit:</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;post-tool-use&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;npx prettier --write .&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Notify on finish:</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;stop&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;osascript -e &#x27;display notification \&quot;Claude is done\&quot; with title \&quot;Claude Code\&quot;&#x27;&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Block dangerous commands (pre-tool-use guard):</strong><br>Hooks that exit with a non-zero code will block the tool call and send the output back to Claude as feedback — useful for enforcing rules.</p>
+<hr>
+<h2 id="Skills"><a href="#Skills" class="headerlink" title="Skills"></a>Skills</h2><p>Skills are reusable prompt templates stored as markdown files in <code>.claude/skills/</code>. They become slash commands.</p>
+<h3 id="File-structure"><a href="#File-structure" class="headerlink" title="File structure"></a>File structure</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dos">.claude/<br>  skills/<br>    commit.<span class="hljs-built_in">md</span><br>    review-pr.<span class="hljs-built_in">md</span><br>    deploy.<span class="hljs-built_in">md</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Example-skill-commit"><a href="#Example-skill-commit" class="headerlink" title="Example skill: /commit"></a>Example skill: <code>/commit</code></h3><p><strong>.claude&#x2F;skills&#x2F;commit.md:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br><span class="hljs-section">description: Stage and commit all changes with a generated message</span><br><span class="hljs-section">---</span><br><br><span class="hljs-bullet">1.</span> Run <span class="hljs-code">`git diff --staged`</span> and <span class="hljs-code">`git status`</span> to see what changed.<br><span class="hljs-bullet">2.</span> Write a concise commit message summarizing the changes.<br><span class="hljs-bullet">3.</span> Run <span class="hljs-code">`git add -A &amp;&amp; git commit -m &quot;&lt;message&gt;&quot;`</span>.<br><span class="hljs-bullet">4.</span> Show the commit hash when done.<br></code></pre></td></tr></table></figure>
+
+<p>Invoke it with <code>/commit</code> in the Claude Code prompt.</p>
+<h3 id="Passing-arguments-to-skills"><a href="#Passing-arguments-to-skills" class="headerlink" title="Passing arguments to skills"></a>Passing arguments to skills</h3><p>Skills receive arguments via <code>args</code>:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br><span class="hljs-section">description: Review a GitHub PR</span><br><span class="hljs-section">---</span><br><br>Review PR #&#123;&#123; args &#125;&#125; — fetch with <span class="hljs-code">`gh pr view &#123;&#123; args &#125;&#125; --json ...`</span><br>and summarize the changes, highlight risks, and suggest improvements.<br></code></pre></td></tr></table></figure>
+
+<p>Usage: <code>/review-pr 123</code></p>
+<hr>
+<h2 id="Subagents-Task-Tool"><a href="#Subagents-Task-Tool" class="headerlink" title="Subagents (Task Tool)"></a>Subagents (Task Tool)</h2><p>Subagents let Claude spin up specialized agents for complex subtasks. Claude Code comes with several built-in types.</p>
+<h3 id="Built-in-agent-types"><a href="#Built-in-agent-types" class="headerlink" title="Built-in agent types"></a>Built-in agent types</h3><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Bash</code></td>
+<td>Git operations, running commands</td>
+</tr>
+<tr>
+<td><code>Explore</code></td>
+<td>Codebase search, finding files&#x2F;patterns</td>
+</tr>
+<tr>
+<td><code>Plan</code></td>
+<td>Designing implementation strategies</td>
+</tr>
+<tr>
+<td><code>general-purpose</code></td>
+<td>Multi-step research tasks</td>
+</tr>
+<tr>
+<td><code>claude-code-guide</code></td>
+<td>Questions about Claude Code itself</td>
+</tr>
+</tbody></table>
+<h3 id="Basic-usage-in-a-skill-or-prompt"><a href="#Basic-usage-in-a-skill-or-prompt" class="headerlink" title="Basic usage (in a skill or prompt)"></a>Basic usage (in a skill or prompt)</h3><p>Claude calls the Task tool internally. You can instruct it explicitly:</p>
+<blockquote>
+<p>“Use the Explore agent to find all API endpoint definitions, then use the Bash agent to run the tests.”</p>
+</blockquote>
+<h3 id="Key-options"><a href="#Key-options" class="headerlink" title="Key options"></a>Key options</h3><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>run_in_background: true</code></td>
+<td>Fire-and-forget; check output later</td>
+</tr>
+<tr>
+<td><code>isolation: &quot;worktree&quot;</code></td>
+<td>Run in an isolated git worktree</td>
+</tr>
+<tr>
+<td><code>resume: &quot;&lt;agent-id&gt;&quot;</code></td>
+<td>Resume a previous agent with its context</td>
+</tr>
+</tbody></table>
+<h3 id="Parallel-agents"><a href="#Parallel-agents" class="headerlink" title="Parallel agents"></a>Parallel agents</h3><p>When tasks are independent, Claude runs multiple agents at once:</p>
+<blockquote>
+<p>“Search for all usages of <code>getUser</code> and simultaneously check for any open GitHub issues related to auth.”</p>
+</blockquote>
+<p>This launches two agents in a single message — one Explore, one Bash — and merges the results.</p>
+<hr>
+<h2 id="Settings-Reference"><a href="#Settings-Reference" class="headerlink" title="Settings Reference"></a>Settings Reference</h2><p><code>.claude/settings.json</code> controls permissions, hooks, and environment:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;model&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;claude-opus-4-6&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;hooks&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> ... <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;allowedTools&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;Bash&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Read&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Edit&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Write&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;NODE_ENV&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;development&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>Use <code>/compact</code> aggressively on long sessions — it preserves task context while freeing up the token window.</li>
+<li>Skills + hooks together are powerful: a <code>/deploy</code> skill can trigger a post-hook that posts to Slack.</li>
+<li>Worktree isolation (<code>isolation: &quot;worktree&quot;</code>) is great for risky refactors — changes are thrown away if you decide not to keep them.</li>
+<li>The <code>Explore</code> subagent is much cheaper on context than running many Grep&#x2F;Glob calls yourself for open-ended searches.</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Claude Code Cheat Sheet</div>
+      <div>https://ruihan11.github.io/2026/03/02/claudeCodeCheatsheet/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ruihan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/03/jp-travel/" title="Japan Trip 2025-2026">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Japan Trip 2025-2026</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/12/books-2026/" title="Books 2026">
+                        <span class="hidden-mobile">Books 2026</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
